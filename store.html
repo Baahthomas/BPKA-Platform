@@ -56,13 +56,15 @@
         .header-icons { display: flex; gap: 20px; cursor: pointer; align-items: center; }
         .cart-icon {
             position: relative;
-            font-size: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
         .cart-badge {
             position: absolute;
-            top: -8px; right: -8px;
+            top: -10px; right: -10px;
             background: var(--teal-accent);
-            color: white;
+            color: rgb(255, 255, 255);
             font-size: 10px;
             font-weight: 700;
             width: 18px; height: 18px;
@@ -104,7 +106,7 @@
         }
         .geo-ring-1 { width: 700px; height: 700px; top: -250px; left: -180px; }
         .geo-ring-2 { width: 500px; height: 500px; top: -150px; left: -80px; border-color: rgba(108, 92, 231, 0.1); }
-        .geo-ring-3 { width: 340px; height: 340px; bottom: -140px; right: -100px; border-color: rgba(197, 160, 89, 0.12); }
+        .geo-ring-3 { width: 340px; height: 340px; bottom: -140px; right: -100px; border-color: rgba(197,160,89,0.12); }
         .geo-ring-4 { width: 220px; height: 220px; top: -60px; right: 15%; border-color: rgba(108,92,231,0.08); }
 
         .geo-stripe {
@@ -547,10 +549,10 @@
         .mini-book-author { font-size: 8px; font-weight: 600; color: rgba(255,255,255,0.5); }
 
         /* Color themes for books */
-        .book-dark  { background: linear-gradient(145deg, #1a1208, #2e2010); }
-        .book-navy  { background: linear-gradient(145deg, #0d1b2a, #1b2d44); border-left-color: #4834d4; }
-        .book-teal  { background: linear-gradient(145deg, #0a2020, #102e2e); border-left-color: #00a896; }
-        .book-plum  { background: linear-gradient(145deg, #1a0a2e, #2a1044); border-left-color: #6c5ce7; }
+        .book-dark   { background: linear-gradient(145deg, #1a1208, #2e2010); }
+        .book-navy   { background: linear-gradient(145deg, #0d1b2a, #1b2d44); border-left-color: #4834d4; }
+        .book-teal   { background: linear-gradient(145deg, #0a2020, #102e2e); border-left-color: #00a896; }
+        .book-plum   { background: linear-gradient(145deg, #1a0a2e, #2a1044); border-left-color: #6c5ce7; }
         .book-green { background: linear-gradient(145deg, #0a1f0a, #102e10); border-left-color: #2d8a2d; }
         .book-red   { background: linear-gradient(145deg, #1f0a0a, #2e1010); border-left-color: #c53030; }
 
@@ -1373,7 +1375,6 @@
 </head>
 <body>
 
-    <!-- ===== HEADER ===== -->
     <header>
         <div class="logo">Kingdom Bearers Global</div>
         <nav>
@@ -1389,21 +1390,23 @@
         <div class="header-icons">
             <span>🔍</span>
             <div class="cart-icon" onclick="openCart()" style="cursor:pointer;">
-                🛒
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="9" cy="21" r="1"></circle>
+                    <circle cx="20" cy="21" r="1"></circle>
+                    <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                </svg>
                 <div class="cart-badge" id="cartBadge">0</div>
             </div>
         </div>
     </header>
 
     
-    <!-- ===== BREADCRUMB ===== -->
     <div class="breadcrumb">
         <a href="index.html">Home</a>
         <span class="breadcrumb-sep">›</span>
         <span>Store</span>
     </div>
 
-    <!-- ===== FEATURED BOOK BANNER ===== -->
     <section class="featured-banner">
         <div class="featured-text-side reveal-left">
             <span class="featured-tag">⭐ Featured Release</span>
@@ -1437,7 +1440,6 @@
         </div>
     </section>
 
-    <!-- ===== FILTER TOOLBAR ===== -->
     <div class="shop-toolbar">
         <div class="filter-tabs">
             <button class="filter-tab active" onclick="filterProducts(this, 'all')">All Products</button>
@@ -1457,11 +1459,9 @@
         </div>
     </div>
 
-    <!-- ===== PRODUCT GRID ===== -->
     <section class="shop-section">
         <div class="product-grid" id="productGrid">
 
-            <!-- Book 1 -->
             <div class="product-card reveal-up" data-category="books" style="transition-delay:0s">
                 <div class="product-img-wrap">
                     <span class="product-badge badge-new">New</span>
@@ -1490,7 +1490,6 @@
                 </div>
             </div>
 
-            <!-- Book 2 -->
             <div class="product-card reveal-up" data-category="books" style="transition-delay:0.05s">
                 <div class="product-img-wrap">
                     <span class="product-badge badge-popular">Popular</span>
@@ -1516,7 +1515,6 @@
                 </div>
             </div>
 
-            <!-- Book 3 -->
             <div class="product-card reveal-up" data-category="books" style="transition-delay:0.1s">
                 <div class="product-img-wrap">
                     <button class="wishlist-btn" onclick="toggleWishlist(this)">🤍</button>
@@ -1541,7 +1539,6 @@
                 </div>
             </div>
 
-            <!-- Book 4 -->
             <div class="product-card reveal-up" data-category="books" style="transition-delay:0.15s">
                 <div class="product-img-wrap">
                     <span class="product-badge badge-digital">Digital</span>
@@ -1567,7 +1564,6 @@
                 </div>
             </div>
 
-            <!-- Audio 1 -->
             <div class="product-card reveal-up" data-category="audio" style="transition-delay:0.2s">
                 <div class="product-img-wrap" style="background:#1a1030;">
                     <span class="product-badge badge-popular">Popular</span>
@@ -1591,7 +1587,6 @@
                 </div>
             </div>
 
-            <!-- Audio 2 -->
             <div class="product-card reveal-up" data-category="audio" style="transition-delay:0.25s">
                 <div class="product-img-wrap" style="background:#0d1030;">
                     <span class="product-badge badge-digital">Digital</span>
@@ -1615,7 +1610,6 @@
                 </div>
             </div>
 
-            <!-- Devotional 1 -->
             <div class="product-card reveal-up" data-category="devotionals" style="transition-delay:0.3s">
                 <div class="product-img-wrap">
                     <span class="product-badge badge-new">New</span>
@@ -1641,7 +1635,6 @@
                 </div>
             </div>
 
-            <!-- Apparel 1 -->
             <div class="product-card reveal-up" data-category="apparel" style="transition-delay:0.35s">
                 <div class="product-img-wrap" style="background:#f0f0f0;">
                     <span class="product-badge badge-bundle">Bundle</span>
@@ -1672,7 +1665,6 @@
         </div>
     </section>
 
-    <!-- ===== CATEGORIES ===== -->
     <section class="categories-section">
         <div class="categories-header reveal-up">
             <span class="section-label" style="display:block; text-align:center;">Browse by Category</span>
@@ -1705,7 +1697,6 @@
         </div>
     </section>
 
-    <!-- ===== BESTSELLERS ===== -->
     <section class="bestsellers-section">
         <div class="bestsellers-header">
             <div class="reveal-left">
@@ -1800,7 +1791,6 @@
         </div>
     </section>
 
-    <!-- ===== PROMO / TESTIMONIALS ===== -->
     <section class="promo-strip">
         <div class="promo-text reveal-left">
             <span class="section-label">Why Shop With Us</span>
@@ -1855,7 +1845,6 @@
         </div>
     </section>
 
-    <!-- ===== NEWSLETTER ===== -->
     <section class="newsletter-section">
         <div class="newsletter-inner reveal-up">
             <span class="section-label" style="display:block; text-align:center;">Stay Connected</span>
@@ -1869,7 +1858,6 @@
         </div>
     </section>
 
-    <!-- ===== FOOTER ===== -->
     <footer>
         <div>
             <h4>Kingdom Bearers Global</h4>
@@ -1896,7 +1884,6 @@
         </div>
     </footer>
 
-    <!-- ===== CART DRAWER ===== -->
     <div class="cart-overlay" id="cartOverlay" onclick="closeCart()"></div>
     <div class="cart-drawer" id="cartDrawer">
         <div class="cart-drawer-header">
@@ -1918,7 +1905,6 @@
         </div>
     </div>
 
-    <!-- Toast notification -->
     <div class="toast" id="toast">
         <span class="toast-icon">✅</span>
         <span id="toastMsg">Item added to cart!</span>
