@@ -10,6 +10,7 @@
             --primary-purple: #6c5ce7;
             --deep-purple: #4834d4;
             --gold-accent: #c5a059;
+            --gold-dark: #9c7a38;
             --black-bg: #000000;
             --white: #ffffff;
             --light-gray: #f8f8f8;
@@ -31,40 +32,14 @@
             overflow-x: hidden;
         }
 
-        /* --- Section Titles with Partial Centered Underline (Non-Bold) --- */
-        h1.main-heading, 
-        .events-section h2, 
-        .section-padding h2,
-        .pastor-section-wrapper h1 { 
-            position: relative;
-            text-align: center;
-            font-weight: 500;
-            margin-bottom: 80px;
-            padding-bottom: 1px;
-            font-size: 36px;
-        }
+        /* ===== SCROLL ANIMATIONS ===== */
+        .reveal-left  { opacity: 0; transform: translateX(-100px); transition: all 1.2s cubic-bezier(0.17, 0.55, 0.55, 1); }
+        .reveal-right { opacity: 0; transform: translateX(100px);  transition: all 1.2s cubic-bezier(0.17, 0.55, 0.55, 1); }
+        .reveal-up    { opacity: 0; transform: translateY(50px);   transition: all 1s ease-out; }
+        .reveal-fade  { opacity: 0; transition: opacity 1.2s ease-out; }
+        .active, .is-visible { opacity: 1; transform: translate(0); }
 
-        h1.main-heading::after, 
-        .events-section h2::after, 
-        .section-padding h2::after,
-        .pastor-section-wrapper h1::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px; 
-            height: 4px;
-            background-color: var(--teal-accent);
-        }
-
-        /* --- Scroll Animations --- */
-        .reveal-left { opacity: 0; transform: translateX(-100px); transition: all 1.2s cubic-bezier(0.17, 0.55, 0.55, 1); }
-        .reveal-right { opacity: 0; transform: translateX(100px); transition: all 1.2s cubic-bezier(0.17, 0.55, 0.55, 1); }
-        .reveal-up { opacity: 0; transform: translateY(50px); transition: all 1s ease-out; }
-        .active { opacity: 1; transform: translate(0); }
-
-        /* --- Sticky Header --- */
+        /* ===== HEADER ===== */
         header {
             display: flex;
             justify-content: space-between;
@@ -78,574 +53,407 @@
         }
         .logo { font-size: 1.4rem; font-weight: 600; color: var(--white); }
         nav ul { display: flex; list-style: none; gap: 30px; }
-        nav a { 
-            color: white; 
-            text-decoration: none; 
-            font-size: 15px; 
-            font-weight: 500; 
-            padding: 0 15px;
-            transition: 0.3s; 
+        nav a {
+            color: white; text-decoration: none;
+            font-size: 15px; font-weight: 500;
+            padding: 0 15px; transition: 0.3s;
         }
         nav a:hover { color: var(--gold-accent); }
+        nav a.active { color: var(--gold-accent); }
         .header-icons { display: flex; gap: 20px; cursor: pointer; }
 
-        /* --- FULL SCREEN Hero Slider --- */
-        .hero-slider { position: relative; height: 100vh; overflow: hidden; background: #000; }
-        .slide {
-            position: absolute; width: 100%; height: 100%; opacity: 0;
-            transition: opacity 1.5s ease-in-out;
-            display: flex; flex-direction: column; justify-content: center;
-            align-items: center; text-align: center; color: white;
-            background-size: cover; background-position: center;
-        }
-        .slide.active { opacity: 1; }
-        .slide::before {
-            content: ''; position: absolute; top:0; left:0; width:100%; height:100%;
-            background: rgba(0,0,0,0.6); z-index: 1;
-        }
-        .hero-content { position: relative; z-index: 2; padding: 0 10%; }
-        .hero-content h1 { font-size: 68px; font-weight: 500; margin-bottom: 20px; line-height: 1.1; }
-        
-        .btn-teal {
-            background: var(--teal-accent); color: white; padding: 15px 40px;
-            text-decoration: none; border-radius: 4px; font-weight: 600;
-            display: inline-block; margin-top: 25px; transition: 0.3s;
-            cursor: pointer; border: none;
-        }
-        .btn-teal:hover { background: var(--teal-dark); transform: scale(1.05); }
-
-        /* --- Pastor Section --- */
-        .pastor-section-wrapper {
-            padding: 100px 10%;
-            background-color: var(--white);
-        }
-
-        .pastor-container { 
-            display: grid; 
-            grid-template-columns: 1.1fr 0.9fr; 
-            gap: 60px; 
-            align-items: center;
-            overflow: hidden;
-        }
-
-        .pastor-img-box { display: flex; justify-content: center; }
-
-        .pastor-img { 
-            width: 100%; 
-            max-width: 600px;
-            border-radius: 12px; 
-            box-shadow: 0 20px 40px rgba(0,0,0,0.15); 
-        }
-
-        h2.section-heading {
-            font-size: 28px;
-            font-weight: 600;
-            margin-bottom: 20px;
-            color: #1a1a1a;
-        }
-
-        p.content-text {
-            font-size: 16px;
-            font-weight: 400;
-            color: #333333;
-            margin-bottom: 24px;
-        }
-
-        blockquote.mission {
-            font-size: 18px;
-            font-weight: 500;
-            font-style: italic;
-            border-left: 4px solid var(--teal-accent); 
-            padding-left: 20px;
-            margin: 30px 0;
-            color: #1a1a1a;
-        }
-
-        .btn-learn-more {
-            font-size: 16px;
-            font-weight: 600;
-            background-color: var(--primary-purple);
-            color: white;
-            padding: 12px 28px;
-            border-radius: 6px;
-            border: none;
-            cursor: pointer;
-            transition: 0.3s;
-        }
-
-        /* --- Upcoming Events --- */
-        .events-section { padding: 100px 5%; background: var(--light-gray); text-align: center; }
-        .events-grid { 
-            display: grid; 
-            grid-template-columns: repeat(3, 1fr); 
-            gap: 20px; 
-            width: 100%;
-        }
-        .event-card { 
-            background: white; 
-            position: relative; 
-            overflow: hidden; 
-            transition: 0.4s;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-        }
-        .event-card img { width: 120%; height: 85vh; object-fit: cover; display: block; }
-        .date-tab {
-            position: absolute; top: 0; left: 0;
-            background: var(--primary-purple); color: white;
-            padding: 10px 15px; font-weight: 600; font-size: 14px; z-index: 5;
-        }
-
-        /* --- Media & Products --- */
-        .section-padding { padding: 80px 10%; text-align: center; }
-        .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; margin-top: 40px; }
-        .video-box { 
-            aspect-ratio: 8/7; 
-            background: #000; 
-            border-radius: 8px; 
-            position: relative; 
-            background-size: cover;
-            background-position: center;
-            overflow: hidden;
-        }
-        
-        .spotify-icon {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            width: 32px;
-            height: 32px;
-            background-image: url('https://upload.wikimedia.org/wikipedia/commons/1/19/Spotify_logo_without_text.svg');
-            background-size: contain;
-            background-repeat: no-repeat;
-            filter: drop-shadow(0px 2px 4px rgba(0,0,0,0.5));
-            z-index: 5;
-        }
-
-        /* Play Button Icon */
-        .play-btn {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%) scale(0.8);
-            width: 60px;
-            height: 60px;
-            background: rgba(108, 92, 231, 0.8);
-            border-radius: 50%;
+        /* ===== HERO — Geo-Ring Pattern ===== */
+        .hero-section {
+            position: relative;
+            height: 60vh;
+            min-height: 420px;
+            background: var(--light-gray);
             display: flex;
             align-items: center;
             justify-content: center;
-            opacity: 0;
-            transition: all 0.4s ease;
-            z-index: 4;
+            overflow: hidden;
+            border-bottom: 1px solid #eee;
         }
 
-        .play-btn::after {
-            content: '';
-            width: 0;
-            height: 0;
-            border-top: 10px solid transparent;
-            border-bottom: 10px solid transparent;
-            border-left: 18px solid white;
-            margin-left: 5px;
-        }
+        .hero-geo { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
 
-        .video-box:hover .play-btn {
-            opacity: 1;
-            transform: translate(-50%, -50%) scale(1);
-        }
-
-        /* --- Sermon Info Box --- */
-        .sermon-info {
+        .geo-ring {
             position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            padding: 20px;
-            background: linear-gradient(transparent, rgba(0,0,0,0.9));
-            color: white;
-            text-align: left;
-            transform: translateY(100%);
-            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            z-index: 6;
+            border-radius: 50%;
+            border: 1px solid rgba(197, 160, 89, 0.2);
+        }
+        .geo-ring-1 { width: 700px; height: 700px; top: -250px; left: -180px; }
+        .geo-ring-2 { width: 500px; height: 500px; top: -150px; left: -80px; border-color: rgba(108,92,231,0.1); }
+        .geo-ring-3 { width: 340px; height: 340px; bottom: -140px; right: -100px; border-color: rgba(197,160,89,0.12); }
+        .geo-ring-4 { width: 220px; height: 220px; top: -60px; right: 15%; border-color: rgba(108,92,231,0.08); }
+
+        .geo-stripe {
+            position: absolute; width: 2px; height: 100%;
+            background: linear-gradient(to bottom, transparent, rgba(197,160,89,0.18), transparent);
+            transform: rotate(20deg) translateX(-50%);
+        }
+        .geo-stripe-1 { left: 22%; }
+        .geo-stripe-2 { left: 88%; opacity: 0.5; }
+
+        .hero-content {
+            position: relative; z-index: 2;
+            text-align: center; padding: 0 10%;
         }
 
-        .video-box:hover .sermon-info {
-            transform: translateY(0);
+        .hero-eyebrow {
+            font-size: 11px; font-weight: 700;
+            letter-spacing: 6px; text-transform: uppercase;
+            color: var(--gold-accent); margin-bottom: 20px; display: block;
         }
 
-        .sermon-title {
-            font-size: 14px;
-            font-weight: 600;
-            color: var(--gold-accent);
-            margin-bottom: 4px;
-            display: block;
+        .hero-content h1 {
+            font-size: 36px; font-weight: 500;
+            color: #1a1a1a; line-height: 1.2; margin-bottom: 24px;
+        }
+        .hero-content h1 em { font-style: normal; color: var(--primary-purple); }
+
+        .hero-divider {
+            display: flex; align-items: center;
+            justify-content: center; gap: 16px; margin: 0 auto 28px;
+        }
+        .hero-divider-line { width: 60px; height: 1px; background: rgba(197,160,89,0.5); }
+        .hero-divider-diamond { width: 8px; height: 8px; background: var(--gold-accent); transform: rotate(45deg); }
+
+        .hero-content p {
+            font-size: 16px; font-weight: 400; color: #555;
+            max-width: 580px; margin: 0 auto 32px; line-height: 1.8;
         }
 
-        .sermon-desc {
-            font-size: 11px;
-            line-height: 1.4;
-            opacity: 0.9;
+        .hero-actions { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+
+        .btn-teal {
+            background: var(--teal-accent); color: white; padding: 14px 36px;
+            text-decoration: none; border-radius: 4px; font-weight: 600; font-size: 15px;
+            display: inline-block; transition: 0.3s; cursor: pointer; border: none;
+            font-family: 'Montserrat', sans-serif;
+        }
+        .btn-teal:hover { background: var(--teal-dark); transform: scale(1.05); }
+
+        .btn-outline {
+            background: transparent; color: var(--primary-purple);
+            padding: 13px 32px; text-decoration: none; border-radius: 4px;
+            font-weight: 600; font-size: 15px; display: inline-block;
+            transition: 0.3s; border: 1px solid var(--primary-purple);
+        }
+        .btn-outline:hover { background: var(--primary-purple); color: white; }
+
+        /* ===== SHARED ===== */
+        .section-label {
+            font-size: 11px; font-weight: 700; letter-spacing: 5px;
+            text-transform: uppercase; color: var(--gold-accent);
+            display: block; margin-bottom: 14px;
         }
 
-        .product-card { border: 1px solid #eee; padding: 20px; transition: 0.3s; background: white; border-radius: 8px; text-align: left;}
+        .section-title-center {
+            font-size: 36px; font-weight: 500; color: #1a1a1a;
+            text-align: center; margin-bottom: 16px; line-height: 1.2;
+            position: relative; padding-bottom: 1px;
+        }
+        .section-title-center::after {
+            content: ''; position: absolute; bottom: 0;
+            left: 50%; transform: translateX(-50%);
+            width: 80px; height: 4px; background-color: var(--black-bg);
+        }
+        .section-title-center em { font-style: normal; color: var(--primary-purple); }
+
+        .section-title { font-size: 36px; font-weight: 500; color: #1a1a1a; line-height: 1.2; margin-bottom: 24px; }
+        .section-title em { font-style: normal; color: var(--primary-purple); }
+
+        .teal-rule { width: 80px; height: 4px; background-color: var(--teal-accent); margin-bottom: 30px; }
+        .teal-rule-center { width: 80px; height: 4px; background-color: var(--teal-accent); margin: 0 auto 50px; }
+
+        /* ===== STATS BAR ===== */
+        .stats-bar {
+            background: var(--white); border-bottom: 1px solid #eee;
+            padding: 0 5%; display: grid; grid-template-columns: repeat(4, 1fr);
+        }
+
+        .stat-item {
+            padding: 32px 20px; text-align: center;
+            border-right: 1px solid #eee; transition: background 0.3s;
+        }
+        .stat-item:last-child { border-right: none; }
+        .stat-item:hover { background: var(--light-gray); }
+
+        .stat-num {
+            font-size: 36px; font-weight: 800; color: var(--primary-purple);
+            letter-spacing: -2px; line-height: 1; margin-bottom: 6px;
+        }
+        .stat-unit { font-size: 20px; color: var(--gold-accent); font-weight: 800; }
+        .stat-label { font-size: 12px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; color: #888; }
+
+        /* ===== PASTOR SECTION ===== */
+        .pastor-section { padding: 100px 5%; background: var(--white); }
+
+        .pastor-inner {
+            display: grid; grid-template-columns: 1.1fr 0.9fr;
+            gap: 70px; align-items: center;
+        }
+
+        /* Two-image block with geo-ring pattern */
+        .pastor-img-block {
+            position: relative;
+            min-height: 520px;
+            border-radius: 16px;
+            overflow: hidden;
+            background: var(--light-gray);
+        }
+
+        /* Geo-ring pattern inside pastor block */
+        .pastor-geo {
+            position: absolute; inset: 0; overflow: hidden; pointer-events: none; z-index: 0;
+        }
+        .pastor-geo-ring {
+            position: absolute; border-radius: 50%;
+            border: 1px solid rgba(197,160,89,0.25);
+        }
+        .pastor-geo-ring-1 { width: 600px; height: 600px; top: -200px; left: -200px; }
+        .pastor-geo-ring-2 { width: 400px; height: 400px; top: -100px; left: -100px; border-color: rgba(108,92,231,0.12); }
+        .pastor-geo-ring-3 { width: 260px; height: 260px; bottom: -80px; right: -60px; border-color: rgba(197,160,89,0.15); }
+        .pastor-geo-ring-4 { width: 160px; height: 160px; top: 30px; right: 10%; border-color: rgba(108,92,231,0.1); }
+        .pastor-geo-stripe {
+            position: absolute; width: 2px; height: 100%;
+            background: linear-gradient(to bottom, transparent, rgba(197,160,89,0.15), transparent);
+            transform: rotate(15deg);
+        }
+        .pastor-geo-stripe-1 { left: 30%; }
+        .pastor-geo-stripe-2 { left: 75%; opacity: 0.5; }
+
+        /* Two images arranged in an overlapping stack */
+        .pastor-imgs {
+            position: relative; z-index: 1;
+            padding: 40px 30px 60px;
+            display: flex; gap: 16px; align-items: flex-start;
+        }
+
+        .pastor-img-primary {
+            width: 58%; border-radius: 12px;
+            box-shadow: 0 16px 48px rgba(0,0,0,0.18);
+            object-fit: cover; aspect-ratio: 3/4;
+            position: relative; z-index: 2;
+            margin-top: 0;
+            border: 3px solid white;
+        }
+
+        .pastor-img-secondary {
+            width: 48%; border-radius: 12px;
+            box-shadow: 0 12px 36px rgba(0,0,0,0.14);
+            object-fit: cover; aspect-ratio: 3/4;
+            position: relative; z-index: 1;
+            margin-top: 60px;
+            border: 3px solid white;
+        }
+
+        .pastor-accent-badge {
+            position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%);
+            background: var(--primary-purple); color: white;
+            padding: 12px 24px; border-radius: 8px;
+            font-size: 13px; font-weight: 700; z-index: 3;
+            box-shadow: 0 8px 24px rgba(108,92,231,0.3); text-align: center; line-height: 1.4;
+            white-space: nowrap;
+        }
+        .pastor-accent-badge span { display: block; font-size: 22px; font-weight: 800; letter-spacing: -1px; color: var(--gold-accent); }
+
+        .content-text { font-size: 16px; font-weight: 400; color: #444; line-height: 1.8; margin-bottom: 20px; }
+
+        .pastor-text blockquote {
+            font-size: 16px; font-weight: 500; font-style: italic;
+            border-left: 4px solid var(--teal-accent);
+            padding: 16px 20px; margin: 28px 0; color: #1a1a1a;
+            background: var(--light-gray); border-radius: 0 6px 6px 0; line-height: 1.7;
+        }
+
+        .btn-learn-more {
+            font-size: 15px; font-weight: 700;
+            background-color: var(--primary-purple); color: white;
+            padding: 14px 32px; border-radius: 4px; border: none;
+            cursor: pointer; transition: 0.3s; font-family: 'Montserrat', sans-serif;
+        }
+        .btn-learn-more:hover { background: var(--deep-purple); transform: scale(1.04); }
+
+        /* ===== EVENTS SECTION ===== */
+        .events-section { padding: 100px 5%; background: var(--light-gray); }
+
+        .events-header { text-align: center; margin-bottom: 60px; }
+
+        .events-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+
+        .event-card {
+            background: var(--white); border-radius: 8px;
+            border: 1px solid #eee; overflow: hidden;
+            transition: all 0.4s ease; position: relative;
+        }
+        .event-card:hover { transform: translateY(-6px); box-shadow: 0 20px 50px rgba(108,92,231,0.1); }
+        .event-card::before {
+            content: ''; position: absolute; top: 0; left: 0;
+            width: 100%; height: 4px; background: var(--teal-accent);
+            transform: scaleX(0); transform-origin: left; transition: transform 0.4s; z-index: 2;
+        }
+        .event-card:hover::before { transform: scaleX(1); }
+
+        .event-card-img { width: 100%; height: 560px; object-fit: cover; display: block; }
+        .event-card-placeholder {
+            width: 100%; height: 360px;
+            background: linear-gradient(135deg, #f0ecff 0%, #e8f5ff 100%);
+            display: none; align-items: center; justify-content: center; font-size: 48px;
+        }
+
+        .event-card-body { padding: 24px 22px 26px; }
+
+        .event-date-tag {
+            display: inline-block; font-size: 10px; font-weight: 700;
+            letter-spacing: 2px; text-transform: uppercase;
+            background: var(--primary-purple); color: white;
+            padding: 5px 12px; border-radius: 100px; margin-bottom: 14px;
+        }
+
+        .event-card-title { font-size: 17px; font-weight: 700; color: #1a1a1a; margin-bottom: 10px; line-height: 1.4; }
+        .event-card-meta { font-size: 13px; font-weight: 400; color: #888; margin-bottom: 18px; }
+
+        .event-card-btn {
+            display: inline-flex; align-items: center; gap: 8px;
+            font-size: 13px; font-weight: 700; color: var(--primary-purple);
+            text-decoration: none; border: none; background: none;
+            cursor: pointer; font-family: 'Montserrat', sans-serif; transition: 0.3s; padding: 0;
+        }
+        .event-card-btn:hover { gap: 14px; }
+
+        .events-footer { text-align: center; margin-top: 50px; }
+
+        /* ===== SERMONS SECTION ===== */
+        .sermons-section { padding: 100px 5%; background: var(--white); }
+        .sermons-header { text-align: center; margin-bottom: 60px; }
+        .sermons-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
+
+        .video-link { text-decoration: none; display: block; }
+
+        .video-box {
+            aspect-ratio: 8/7; background: #1a1a2e; border-radius: 8px;
+            position: relative; background-size: cover; background-position: center;
+            overflow: hidden; border: 1px solid #eee;
+        }
+        .video-box::before {
+            content: ''; position: absolute; inset: 0;
+            background: rgba(0,0,0,0.35); transition: background 0.3s;
+        }
+        .video-box:hover::before { background: rgba(0,0,0,0.5); }
+
+        .spotify-icon {
+            position: absolute; top: 15px; right: 15px;
+            width: 32px; height: 32px;
+            background-image: url('https://upload.wikimedia.org/wikipedia/commons/1/19/Spotify_logo_without_text.svg');
+            background-size: contain; background-repeat: no-repeat;
+            filter: drop-shadow(0px 2px 4px rgba(0,0,0,0.5)); z-index: 5;
+        }
+
+        .play-btn {
+            position: absolute; top: 50%; left: 50%;
+            transform: translate(-50%, -50%) scale(0.8);
+            width: 60px; height: 60px; background: rgba(108,92,231,0.85);
+            border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            opacity: 0; transition: all 0.4s ease; z-index: 4;
+        }
+        .play-btn::after {
+            content: ''; width: 0; height: 0;
+            border-top: 10px solid transparent; border-bottom: 10px solid transparent;
+            border-left: 18px solid white; margin-left: 5px;
+        }
+        .video-box:hover .play-btn { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+
+        .sermon-label-bar {
+            position: absolute; bottom: 0; left: 0; width: 100%;
+            padding: 14px 16px;
+            background: linear-gradient(transparent, rgba(0,0,0,0.75));
+            z-index: 3; transition: opacity 0.3s;
+        }
+        .video-box:hover .sermon-label-bar { opacity: 0; }
+
+        .sermon-label-title { font-size: 13px; font-weight: 700; color: var(--white); margin-bottom: 2px; }
+        .sermon-label-sub { font-size: 10px; font-weight: 500; color: rgba(255,255,255,0.6); letter-spacing: 1px; text-transform: uppercase; }
+
+        .sermon-info {
+            position: absolute; bottom: 0; left: 0; width: 100%;
+            padding: 20px; background: linear-gradient(transparent, rgba(0,0,0,0.9));
+            color: white; text-align: left;
+            transform: translateY(100%); transition: transform 0.4s cubic-bezier(0.4,0,0.2,1); z-index: 6;
+        }
+        .video-box:hover .sermon-info { transform: translateY(0); }
+
+        .sermon-title { font-size: 14px; font-weight: 600; color: var(--gold-accent); margin-bottom: 4px; display: block; }
+        .sermon-desc { font-size: 11px; line-height: 1.4; opacity: 0.9; }
+
+        .sermons-footer { text-align: center; margin-top: 50px; }
+
+        /* ===== FEATURED PRODUCTS — UNTOUCHED ===== */
+        .section-padding { padding: 80px 10%; text-align: center; }
+
+        .section-padding h2 {
+            position: relative; text-align: center; font-weight: 500;
+            margin-bottom: 80px; padding-bottom: 1px; font-size: 36px;
+        }
+        .section-padding h2::after {
+            content: ''; position: absolute; bottom: 0;
+            left: 50%; transform: translateX(-50%);
+            width: 80px; height: 4px; background-color: var(--black-bg);
+        }
+
+        .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; margin-top: 40px; }
+
+        .product-card { border: 1px solid #eee; padding: 20px; transition: 0.3s; background: white; border-radius: 8px; text-align: left; }
         .product-card:hover { border-color: var(--gold-accent); }
         .product-card img { width: 100%; height: 300px; object-fit: contain; }
         .product-card h3 { font-weight: 500; font-size: 18px; }
 
-        /* ============================================
-           JOIN US SECTION — LUXURY GOLD & PURPLE
-        ============================================ */
+        /* ===== YOU ARE WELCOME HERE — UNTOUCHED ===== */
         .join-us-section {
-            position: relative;
-            padding: 120px 10%;
-            background: #f8f8f8;
-            overflow: hidden;
-            text-align: center;
+            position: relative; padding: 120px 10%;
+            background: #f8f8f8; overflow: hidden; text-align: center;
         }
+        .join-us-rule { display: flex; align-items: center; justify-content: center; gap: 18px; margin-bottom: 50px; }
+        .join-us-rule span { display: block; width: 80px; height: 1px; background: linear-gradient(90deg, transparent, var(--gold-accent)); }
+        .join-us-rule span:last-child { background: linear-gradient(90deg, var(--gold-accent), transparent); }
+        .join-us-rule-diamond { width: 10px; height: 10px; background: var(--gold-accent); transform: rotate(45deg); flex-shrink: 0; }
+        .join-us-eyebrow { font-size: 11px; font-weight: 700; letter-spacing: 5px; color: var(--black-bg); margin-bottom: 22px; }
+        .join-us-heading { font-size: 42px; font-weight: 300; color: #1a1a1a; line-height: 1.15; margin-bottom: 28px; position: relative; z-index: 1; }
+        .join-us-heading em { font-style: normal; color: var(--primary-purple); }
+        .join-us-subtext { font-size: 16px; font-weight: 400; color: #555555; max-width: 580px; margin: 0 auto 60px; line-height: 1.8; position: relative; z-index: 1; }
+        .join-us-pillars { display: grid; grid-template-columns: repeat(3, 1fr); gap: 50px; margin-bottom: 70px; position: relative; z-index: 1; }
+        .pillar-card { padding: 44px 32px; background: transparent; border: none; }
+        .pillar-title { font-size: 15px; font-weight: 600; color: #1a1a1a; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 16px; position: relative; display: inline-block; padding-bottom: 12px; }
+        .pillar-title::after { content: ''; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 40px; height: 2px; background: linear-gradient(90deg, var(--primary-purple), var(--gold-accent)); }
+        .pillar-desc { font-size: 14px; font-weight: 400; color: #555555; line-height: 1.8; margin-top: 8px; }
+        .join-us-cta { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; position: relative; z-index: 1; }
+        .join-us-verse { margin-top: 70px; padding-top: 40px; border-top: 1px solid rgba(197,160,89,0.25); font-size: 13px; font-weight: 500; font-style: italic; color: #999999; letter-spacing: 0.5px; position: relative; z-index: 1; }
 
-        .join-us-rule {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 18px;
-            margin-bottom: 50px;
-        }
+        /* ===== JOIN OUR SERVICE — UNTOUCHED ===== */
+        .join-service-section { padding: 100px 5%; background: #ffffff; overflow: hidden; }
+        .join-service-section h2 { position: relative; text-align: center; font-weight: 500; margin-bottom: 80px; padding-bottom: 1px; font-size: 36px; color: #1a1a1a; }
+        .join-service-section h2::after { content: ''; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 80px; height: 4px; background-color: var(--black-bg); }
+        .service-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 24px; min-height: 520px; }
 
-        .join-us-rule span {
-            display: block;
-            width: 80px;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, var(--gold-accent));
-        }
-
-        .join-us-rule span:last-child {
-            background: linear-gradient(90deg, var(--gold-accent), transparent);
-        }
-
-        .join-us-rule-diamond {
-            width: 10px;
-            height: 10px;
-            background: var(--gold-accent);
-            transform: rotate(45deg);
-            flex-shrink: 0;
-        }
-
-        .join-us-eyebrow {
-            font-size: 11px;
-            font-weight: 700;
-            letter-spacing: 5px;
-            text-transform: sentence-case;
-            color: var(--black-bg);
-            margin-bottom: 22px;
-        }
-
-        .join-us-heading {
-            font-size: 42px;
-            font-weight: 300;
-            color: #1a1a1a;
-            line-height: 1.15;
-            margin-bottom: 28px;
-            position: relative;
-            z-index: 1;
-        }
-
-        .join-us-heading em {
-            font-style: normal;
-            color: var(--primary-purple);
-        }
-
-        .join-us-subtext {
-            font-size: 16px;
-            font-weight: 400;
-            color: #555555;
-            max-width: 580px;
-            margin: 0 auto 60px;
-            line-height: 1.8;
-            position: relative;
-            z-index: 1;
-        }
-
-        .join-us-pillars {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 50px;
-            margin-bottom: 70px;
-            position: relative;
-            z-index: 1;
-        }
-
-        .pillar-card {
-            padding: 44px 32px;
-            background: transparent;
-            border: none;
-        }
-
-        .pillar-title {
-            font-size: 15px;
-            font-weight: 600;
-            color: #1a1a1a;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-            margin-bottom: 16px;
-            position: relative;
-            display: inline-block;
-            padding-bottom: 12px;
-        }
-
-        .pillar-title::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 40px;
-            height: 2px;
-            background: linear-gradient(90deg, var(--primary-purple), var(--gold-accent));
-        }
-
-        .pillar-desc {
-            font-size: 14px;
-            font-weight: 400;
-            color: #555555;
-            line-height: 1.8;
-            margin-top: 8px;
-        }
-
-        .join-us-cta {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            flex-wrap: wrap;
-            position: relative;
-            z-index: 1;
-        }
-
-        .join-us-verse {
-            margin-top: 70px;
-            padding-top: 40px;
-            border-top: 1px solid rgba(197,160,89,0.25);
-            font-size: 13px;
-            font-weight: 500;
-            font-style: italic;
-            color: #999999;
-            letter-spacing: 0.5px;
-            position: relative;
-            z-index: 1;
-        }
-
-        /* ============================================
-           JOIN OUR SERVICE SECTION (3-column grid)
-        ============================================ */
-        .join-service-section {
-            padding: 100px 5%;
-            background: #ffffff;
-            overflow: hidden;
-        }
-
-        .join-service-section h2 {
-            position: relative;
-            text-align: center;
-            font-weight: 500;
-            margin-bottom: 80px;
-            padding-bottom: 1px;
-            font-size: 36px;
-            color: #1a1a1a;
-        }
-
-        .join-service-section h2::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 4px;
-            background-color: var(--teal-accent);
-        }
-
-        .service-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
-            gap: 24px;
-            min-height: 520px;
-        }
-
-        /* ---- PodBean Card ---- */
-        .podbean-card {
-            background: linear-gradient(145deg, #fff8f5 0%, #fff3ed 50%, #fff8f5 100%);
-            padding: 50px 40px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-            border-right: 1px solid rgba(242,101,34,0.1);
-            border-radius: 12px;
-        }
-
-        .podbean-card::before {
-            content: '';
-            position: absolute;
-            top: -80px;
-            left: -80px;
-            width: 250px;
-            height: 250px;
-            border-radius: 50%;
-            background: radial-gradient(circle, rgba(242, 101, 34, 0.15) 0%, transparent 70%);
-            animation: pulse-glow 3s ease-in-out infinite;
-        }
-
-        .podbean-card::after {
-            content: '';
-            position: absolute;
-            bottom: -60px;
-            right: -60px;
-            width: 200px;
-            height: 200px;
-            border-radius: 50%;
-            background: radial-gradient(circle, rgba(242, 101, 34, 0.1) 0%, transparent 70%);
-            animation: pulse-glow 3s ease-in-out infinite 1.5s;
-        }
-
-        @keyframes pulse-glow {
-            0%, 100% { transform: scale(1); opacity: 0.7; }
-            50% { transform: scale(1.2); opacity: 1; }
-        }
-
-        .podbean-logo-wrap {
-            position: relative;
-            z-index: 2;
-            margin-bottom: 28px;
-        }
-
-        .podbean-logo-circle {
-            width: 90px;
-            height: 90px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, #f26522, #e84c0c);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 16px;
-            box-shadow: 0 0 0 0 rgba(242, 101, 34, 0.5);
-            animation: podbean-ring 2.5s ease-in-out infinite;
-            position: relative;
-        }
-
-        @keyframes podbean-ring {
-            0% { box-shadow: 0 0 0 0 rgba(242, 101, 34, 0.5); }
-            70% { box-shadow: 0 0 0 20px rgba(242, 101, 34, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(242, 101, 34, 0); }
-        }
-
-        .podbean-logo-circle svg {
-            width: 46px;
-            height: 46px;
-        }
-
-        .podbean-brand-name {
-            font-size: 13px;
-            font-weight: 700;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            color: var(--podbean-orange);
-            position: relative;
-            z-index: 2;
-        }
-
-        .podbean-card h3 {
-            font-size: 22px;
-            font-weight: 600;
-            color: #1a1a1a;
-            margin-bottom: 14px;
-            position: relative;
-            z-index: 2;
-        }
-
-        .podbean-card p {
-            font-size: 14px;
-            font-weight: 400;
-            color: #555555;
-            line-height: 1.7;
-            margin-bottom: 16px;
-            position: relative;
-            z-index: 2;
-        }
-
-        .live-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 7px;
-            background: rgba(242, 101, 34, 0.15);
-            border: 1px solid rgba(242, 101, 34, 0.4);
-            color: var(--podbean-orange);
-            font-size: 12px;
-            font-weight: 700;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            padding: 7px 16px;
-            border-radius: 100px;
-            margin-bottom: 28px;
-            position: relative;
-            z-index: 2;
-        }
-
-        .live-dot {
-            width: 7px;
-            height: 7px;
-            background: var(--podbean-orange);
-            border-radius: 50%;
-            animation: blink 1.2s ease-in-out infinite;
-        }
-
-        @keyframes blink {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.1; }
-        }
-
-        .btn-podbean {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            background: linear-gradient(135deg, #f26522, #e84c0c);
-            color: white;
-            padding: 13px 28px;
-            border-radius: 6px;
-            font-size: 14px;
-            font-weight: 600;
-            text-decoration: none;
-            transition: 0.3s;
-            position: relative;
-            z-index: 2;
-            border: none;
-            cursor: pointer;
-        }
-
-        .btn-podbean:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(242, 101, 34, 0.4);
-        }
-
-        .wave-bars {
-            display: flex;
-            align-items: flex-end;
-            gap: 3px;
-            height: 28px;
-            margin-bottom: 24px;
-            position: relative;
-            z-index: 2;
-        }
-
-        .wave-bar {
-            width: 4px;
-            background: var(--podbean-orange);
-            border-radius: 2px;
-            opacity: 0.8;
-            animation: wave-dance 1s ease-in-out infinite;
-        }
-
+        .podbean-card { background: linear-gradient(145deg, #fff8f5 0%, #fff3ed 50%, #fff8f5 100%); padding: 50px 40px; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; position: relative; overflow: hidden; border-right: 1px solid rgba(242,101,34,0.1); border-radius: 12px; }
+        .podbean-card::before { content: ''; position: absolute; top: -80px; left: -80px; width: 250px; height: 250px; border-radius: 50%; background: radial-gradient(circle, rgba(242,101,34,0.15) 0%, transparent 70%); animation: pulse-glow 3s ease-in-out infinite; }
+        .podbean-card::after { content: ''; position: absolute; bottom: -60px; right: -60px; width: 200px; height: 200px; border-radius: 50%; background: radial-gradient(circle, rgba(242,101,34,0.1) 0%, transparent 70%); animation: pulse-glow 3s ease-in-out infinite 1.5s; }
+        @keyframes pulse-glow { 0%, 100% { transform: scale(1); opacity: 0.7; } 50% { transform: scale(1.2); opacity: 1; } }
+        .podbean-logo-wrap { position: relative; z-index: 2; margin-bottom: 28px; }
+        .podbean-logo-circle { width: 90px; height: 90px; border-radius: 50%; background: linear-gradient(135deg, #f26522, #e84c0c); display: flex; align-items: center; justify-content: center; margin: 0 auto 16px; box-shadow: 0 0 0 0 rgba(242,101,34,0.5); animation: podbean-ring 2.5s ease-in-out infinite; position: relative; }
+        @keyframes podbean-ring { 0% { box-shadow: 0 0 0 0 rgba(242,101,34,0.5); } 70% { box-shadow: 0 0 0 20px rgba(242,101,34,0); } 100% { box-shadow: 0 0 0 0 rgba(242,101,34,0); } }
+        .podbean-logo-circle svg { width: 46px; height: 46px; }
+        .podbean-brand-name { font-size: 13px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--podbean-orange); position: relative; z-index: 2; }
+        .podbean-card h3 { font-size: 22px; font-weight: 600; color: #1a1a1a; margin-bottom: 14px; position: relative; z-index: 2; }
+        .podbean-card p { font-size: 14px; font-weight: 400; color: #555555; line-height: 1.7; margin-bottom: 16px; position: relative; z-index: 2; }
+        .live-badge { display: inline-flex; align-items: center; gap: 7px; background: rgba(242,101,34,0.15); border: 1px solid rgba(242,101,34,0.4); color: var(--podbean-orange); font-size: 12px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; padding: 7px 16px; border-radius: 100px; margin-bottom: 28px; position: relative; z-index: 2; }
+        .live-dot { width: 7px; height: 7px; background: var(--podbean-orange); border-radius: 50%; animation: blink 1.2s ease-in-out infinite; }
+        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.1; } }
+        .btn-podbean { display: inline-flex; align-items: center; gap: 10px; background: linear-gradient(135deg, #f26522, #e84c0c); color: white; padding: 13px 28px; border-radius: 6px; font-size: 14px; font-weight: 600; text-decoration: none; transition: 0.3s; position: relative; z-index: 2; border: none; cursor: pointer; }
+        .btn-podbean:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(242,101,34,0.4); }
+        .wave-bars { display: flex; align-items: flex-end; gap: 3px; height: 28px; margin-bottom: 24px; position: relative; z-index: 2; }
+        .wave-bar { width: 4px; background: var(--podbean-orange); border-radius: 2px; opacity: 0.8; animation: wave-dance 1s ease-in-out infinite; }
         .wave-bar:nth-child(1) { height: 10px; animation-delay: 0s; }
         .wave-bar:nth-child(2) { height: 22px; animation-delay: 0.15s; }
         .wave-bar:nth-child(3) { height: 14px; animation-delay: 0.3s; }
@@ -653,452 +461,64 @@
         .wave-bar:nth-child(5) { height: 18px; animation-delay: 0.6s; }
         .wave-bar:nth-child(6) { height: 10px; animation-delay: 0.75s; }
         .wave-bar:nth-child(7) { height: 20px; animation-delay: 0.9s; }
+        @keyframes wave-dance { 0%, 100% { transform: scaleY(1); } 50% { transform: scaleY(0.3); } }
 
-        @keyframes wave-dance {
-            0%, 100% { transform: scaleY(1); }
-            50% { transform: scaleY(0.3); }
-        }
+        .whatsapp-card { background: linear-gradient(145deg, #f0fff6 0%, #e8fdf0 50%, #f0fff6 100%); padding: 50px 40px; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; position: relative; overflow: hidden; border-right: 1px solid rgba(37,211,102,0.1); border-radius: 12px; }
+        .whatsapp-card::before { content: ''; position: absolute; top: -60px; right: -60px; width: 220px; height: 220px; border-radius: 50%; background: radial-gradient(circle, rgba(37,211,102,0.12) 0%, transparent 70%); animation: pulse-glow 4s ease-in-out infinite; }
+        .whatsapp-card::after { content: ''; position: absolute; bottom: -70px; left: -70px; width: 240px; height: 240px; border-radius: 50%; background: radial-gradient(circle, rgba(37,211,102,0.08) 0%, transparent 70%); animation: pulse-glow 4s ease-in-out infinite 2s; }
+        .whatsapp-logo-wrap { position: relative; z-index: 2; margin-bottom: 28px; }
+        .whatsapp-logo-circle { width: 90px; height: 90px; border-radius: 50%; background: linear-gradient(135deg, #25d366, #128c7e); display: flex; align-items: center; justify-content: center; margin: 0 auto 16px; box-shadow: 0 0 0 0 rgba(37,211,102,0.5); animation: whatsapp-ring 2.5s ease-in-out infinite 1s; }
+        @keyframes whatsapp-ring { 0% { box-shadow: 0 0 0 0 rgba(37,211,102,0.5); } 70% { box-shadow: 0 0 0 20px rgba(37,211,102,0); } 100% { box-shadow: 0 0 0 0 rgba(37,211,102,0); } }
+        .whatsapp-logo-circle svg { width: 50px; height: 50px; }
+        .whatsapp-brand-name { font-size: 13px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--whatsapp-green); position: relative; z-index: 2; }
+        .whatsapp-card h3 { font-size: 22px; font-weight: 600; color: #1a1a1a; margin-bottom: 14px; position: relative; z-index: 2; }
+        .whatsapp-card p { font-size: 14px; font-weight: 400; color: #555555; line-height: 1.7; margin-bottom: 16px; position: relative; z-index: 2; }
+        .prayer-badge { display: inline-flex; align-items: center; gap: 7px; background: rgba(37,211,102,0.1); border: 1px solid rgba(37,211,102,0.35); color: var(--whatsapp-green); font-size: 12px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; padding: 7px 16px; border-radius: 100px; margin-bottom: 28px; position: relative; z-index: 2; }
+        .prayer-hand-anim { font-size: 28px; position: relative; z-index: 2; margin-bottom: 20px; animation: sway 2s ease-in-out infinite; display: inline-block; }
+        @keyframes sway { 0%, 100% { transform: rotate(-5deg); } 50% { transform: rotate(5deg); } }
+        .btn-whatsapp { display: inline-flex; align-items: center; gap: 10px; background: linear-gradient(135deg, #25d366, #128c7e); color: white; padding: 13px 28px; border-radius: 6px; font-size: 14px; font-weight: 600; text-decoration: none; transition: 0.3s; position: relative; z-index: 2; border: none; cursor: pointer; }
+        .btn-whatsapp:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(37,211,102,0.35); }
 
-        /* ---- WhatsApp Prayer Card ---- */
-        .whatsapp-card {
-            background: linear-gradient(145deg, #f0fff6 0%, #e8fdf0 50%, #f0fff6 100%);
-            padding: 50px 40px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-            border-right: 1px solid rgba(37,211,102,0.1);
-            border-radius: 12px;
-        }
-
-        .whatsapp-card::before {
-            content: '';
-            position: absolute;
-            top: -60px;
-            right: -60px;
-            width: 220px;
-            height: 220px;
-            border-radius: 50%;
-            background: radial-gradient(circle, rgba(37, 211, 102, 0.12) 0%, transparent 70%);
-            animation: pulse-glow 4s ease-in-out infinite;
-        }
-
-        .whatsapp-card::after {
-            content: '';
-            position: absolute;
-            bottom: -70px;
-            left: -70px;
-            width: 240px;
-            height: 240px;
-            border-radius: 50%;
-            background: radial-gradient(circle, rgba(37, 211, 102, 0.08) 0%, transparent 70%);
-            animation: pulse-glow 4s ease-in-out infinite 2s;
-        }
-
-        .whatsapp-logo-wrap {
-            position: relative;
-            z-index: 2;
-            margin-bottom: 28px;
-        }
-
-        .whatsapp-logo-circle {
-            width: 90px;
-            height: 90px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, #25d366, #128c7e);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 16px;
-            box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.5);
-            animation: whatsapp-ring 2.5s ease-in-out infinite 1s;
-        }
-
-        @keyframes whatsapp-ring {
-            0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.5); }
-            70% { box-shadow: 0 0 0 20px rgba(37, 211, 102, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
-        }
-
-        .whatsapp-logo-circle svg {
-            width: 50px;
-            height: 50px;
-        }
-
-        .whatsapp-brand-name {
-            font-size: 13px;
-            font-weight: 700;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            color: var(--whatsapp-green);
-            position: relative;
-            z-index: 2;
-        }
-
-        .whatsapp-card h3 {
-            font-size: 22px;
-            font-weight: 600;
-            color: #1a1a1a;
-            margin-bottom: 14px;
-            position: relative;
-            z-index: 2;
-        }
-
-        .whatsapp-card p {
-            font-size: 14px;
-            font-weight: 400;
-            color: #555555;
-            line-height: 1.7;
-            margin-bottom: 16px;
-            position: relative;
-            z-index: 2;
-        }
-
-        .prayer-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 7px;
-            background: rgba(37, 211, 102, 0.1);
-            border: 1px solid rgba(37, 211, 102, 0.35);
-            color: var(--whatsapp-green);
-            font-size: 12px;
-            font-weight: 700;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            padding: 7px 16px;
-            border-radius: 100px;
-            margin-bottom: 28px;
-            position: relative;
-            z-index: 2;
-        }
-
-        .prayer-hand-anim {
-            font-size: 28px;
-            position: relative;
-            z-index: 2;
-            margin-bottom: 20px;
-            animation: sway 2s ease-in-out infinite;
-            display: inline-block;
-        }
-
-        @keyframes sway {
-            0%, 100% { transform: rotate(-5deg); }
-            50% { transform: rotate(5deg); }
-        }
-
-        .btn-whatsapp {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            background: linear-gradient(135deg, #25d366, #128c7e);
-            color: white;
-            padding: 13px 28px;
-            border-radius: 6px;
-            font-size: 14px;
-            font-weight: 600;
-            text-decoration: none;
-            transition: 0.3s;
-            position: relative;
-            z-index: 2;
-            border: none;
-            cursor: pointer;
-        }
-
-        .btn-whatsapp:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(37, 211, 102, 0.35);
-        }
-
-        /* ---- Music Card ---- */
-        .music-card {
-            background: linear-gradient(145deg, #f5f3ff 0%, #ede9fe 50%, #f5f3ff 100%);
-            padding: 40px 30px 30px;
-            display: flex;
-            flex-direction: column;
-            position: relative;
-            overflow: hidden;
-            border-radius: 12px;
-        }
-
-        .music-card::before {
-            content: '';
-            position: absolute;
-            top: -80px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 260px;
-            height: 260px;
-            border-radius: 50%;
-            background: radial-gradient(circle, rgba(108, 92, 231, 0.08) 0%, transparent 70%);
-            animation: pulse-glow 3.5s ease-in-out infinite;
-            pointer-events: none;
-        }
-
-        .music-card-header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 20px;
-            position: relative;
-            z-index: 2;
-        }
-
-        .music-card-title-group {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .music-spotify-badge {
-            width: 34px;
-            height: 34px;
-            border-radius: 50%;
-            background: var(--spotify-green);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-        }
-
-        .music-spotify-badge svg {
-            width: 20px;
-            height: 20px;
-        }
-
-        .music-card-title {
-            font-size: 16px;
-            font-weight: 600;
-            color: #1a1a1a;
-        }
-
-        .music-card-subtitle {
-            font-size: 11px;
-            font-weight: 400;
-            color: rgba(0,0,0,0.4);
-            margin-top: 1px;
-        }
-
-        /* Scrollable music list */
-        .music-list-wrapper {
-            position: relative;
-            flex: 1;
-            z-index: 2;
-        }
-
-        .music-list-scroll {
-            height: 330px;
-            overflow-y: auto;
-            scrollbar-width: thin;
-            scrollbar-color: rgba(108, 92, 231, 0.4) transparent;
-            padding-right: 6px;
-        }
-
+        .music-card { background: linear-gradient(145deg, #f5f3ff 0%, #ede9fe 50%, #f5f3ff 100%); padding: 40px 30px 30px; display: flex; flex-direction: column; position: relative; overflow: hidden; border-radius: 12px; }
+        .music-card::before { content: ''; position: absolute; top: -80px; left: 50%; transform: translateX(-50%); width: 260px; height: 260px; border-radius: 50%; background: radial-gradient(circle, rgba(108,92,231,0.08) 0%, transparent 70%); animation: pulse-glow 3.5s ease-in-out infinite; pointer-events: none; }
+        .music-card-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; position: relative; z-index: 2; }
+        .music-card-title-group { display: flex; align-items: center; gap: 12px; }
+        .music-spotify-badge { width: 34px; height: 34px; border-radius: 50%; background: var(--spotify-green); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+        .music-spotify-badge svg { width: 20px; height: 20px; }
+        .music-card-title { font-size: 16px; font-weight: 600; color: #1a1a1a; }
+        .music-card-subtitle { font-size: 11px; font-weight: 400; color: rgba(0,0,0,0.4); margin-top: 1px; }
+        .music-list-wrapper { position: relative; flex: 1; z-index: 2; }
+        .music-list-scroll { height: 330px; overflow-y: auto; scrollbar-width: thin; scrollbar-color: rgba(108,92,231,0.4) transparent; padding-right: 6px; }
         .music-list-scroll::-webkit-scrollbar { width: 4px; }
         .music-list-scroll::-webkit-scrollbar-track { background: transparent; }
-        .music-list-scroll::-webkit-scrollbar-thumb { background: rgba(108, 92, 231, 0.4); border-radius: 4px; }
-
-        .scroll-indicator {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 6px;
-            height: 40px;
-            background: linear-gradient(transparent, rgba(237, 233, 254, 0.95));
-            pointer-events: none;
-            z-index: 3;
-            display: flex;
-            align-items: flex-end;
-            justify-content: center;
-            padding-bottom: 4px;
-        }
-
-        .scroll-arrow {
-            width: 20px;
-            height: 20px;
-            border-right: 2px solid rgba(108, 92, 231, 0.6);
-            border-bottom: 2px solid rgba(108, 92, 231, 0.6);
-            transform: rotate(45deg);
-            animation: scroll-bounce 1.5s ease-in-out infinite;
-        }
-
-        @keyframes scroll-bounce {
-            0%, 100% { transform: rotate(45deg) translateY(0); opacity: 0.6; }
-            50% { transform: rotate(45deg) translateY(4px); opacity: 1; }
-        }
-
-        .music-track {
-            display: flex;
-            align-items: center;
-            gap: 14px;
-            padding: 11px 10px;
-            border-radius: 8px;
-            text-decoration: none;
-            transition: background 0.25s;
-            border-bottom: 1px solid rgba(0,0,0,0.06);
-        }
-
+        .music-list-scroll::-webkit-scrollbar-thumb { background: rgba(108,92,231,0.4); border-radius: 4px; }
+        .scroll-indicator { position: absolute; bottom: 0; left: 0; right: 6px; height: 40px; background: linear-gradient(transparent, rgba(237,233,254,0.95)); pointer-events: none; z-index: 3; display: flex; align-items: flex-end; justify-content: center; padding-bottom: 4px; }
+        .scroll-arrow { width: 20px; height: 20px; border-right: 2px solid rgba(108,92,231,0.6); border-bottom: 2px solid rgba(108,92,231,0.6); transform: rotate(45deg); animation: scroll-bounce 1.5s ease-in-out infinite; }
+        @keyframes scroll-bounce { 0%, 100% { transform: rotate(45deg) translateY(0); opacity: 0.6; } 50% { transform: rotate(45deg) translateY(4px); opacity: 1; } }
+        .music-track { display: flex; align-items: center; gap: 14px; padding: 11px 10px; border-radius: 8px; text-decoration: none; transition: background 0.25s; border-bottom: 1px solid rgba(0,0,0,0.06); }
         .music-track:last-child { border-bottom: none; }
-
-        .music-track:hover {
-            background: rgba(108, 92, 231, 0.07);
-        }
-
-        .music-track:hover .track-play-icon {
-            opacity: 1;
-            transform: scale(1);
-        }
-
-        .music-track:hover .track-number {
-            opacity: 0;
-        }
-
-        .track-number-wrap {
-            width: 22px;
-            text-align: center;
-            position: relative;
-            flex-shrink: 0;
-        }
-
-        .track-number {
-            font-size: 12px;
-            font-weight: 500;
-            color: rgba(0,0,0,0.35);
-            transition: opacity 0.2s;
-        }
-
-        .track-play-icon {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%) scale(0.7);
-            opacity: 0;
-            transition: all 0.2s;
-            color: var(--primary-purple);
-            font-size: 14px;
-        }
-
-        .track-thumbnail {
-            width: 38px;
-            height: 38px;
-            border-radius: 4px;
-            background: linear-gradient(135deg, #e0d7ff, #c8b8ff);
-            flex-shrink: 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 16px;
-            overflow: hidden;
-        }
-
-        .track-thumbnail img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .track-info {
-            flex: 1;
-            min-width: 0;
-        }
-
-        .track-name {
-            font-size: 13px;
-            font-weight: 600;
-            color: #1a1a1a;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-
-        .track-artist {
-            font-size: 11px;
-            font-weight: 400;
-            color: rgba(0,0,0,0.4);
-        }
-
-        .track-spotify-link {
-            width: 22px;
-            height: 22px;
-            flex-shrink: 0;
-            opacity: 0.5;
-            transition: opacity 0.2s;
-        }
-
+        .music-track:hover { background: rgba(108,92,231,0.07); }
+        .music-track:hover .track-play-icon { opacity: 1; transform: scale(1); }
+        .music-track:hover .track-number { opacity: 0; }
+        .track-number-wrap { width: 22px; text-align: center; position: relative; flex-shrink: 0; }
+        .track-number { font-size: 12px; font-weight: 500; color: rgba(0,0,0,0.35); transition: opacity 0.2s; }
+        .track-play-icon { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%) scale(0.7); opacity: 0; transition: all 0.2s; color: var(--primary-purple); font-size: 14px; }
+        .track-thumbnail { width: 38px; height: 38px; border-radius: 4px; background: linear-gradient(135deg, #e0d7ff, #c8b8ff); flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 16px; overflow: hidden; }
+        .track-thumbnail img { width: 100%; height: 100%; object-fit: cover; }
+        .track-info { flex: 1; min-width: 0; }
+        .track-name { font-size: 13px; font-weight: 600; color: #1a1a1a; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .track-artist { font-size: 11px; font-weight: 400; color: rgba(0,0,0,0.4); }
+        .track-spotify-link { width: 22px; height: 22px; flex-shrink: 0; opacity: 0.5; transition: opacity 0.2s; }
         .music-track:hover .track-spotify-link { opacity: 1; }
+        .music-card-footer { margin-top: 18px; position: relative; z-index: 2; display: flex; flex-direction: column; align-items: center; gap: 12px; }
+        .btn-more-music { display: inline-flex; align-items: center; gap: 8px; background: transparent; border: 1px solid rgba(29,185,84,0.5); color: var(--spotify-green); padding: 10px 24px; border-radius: 100px; font-size: 13px; font-weight: 600; font-family: 'Montserrat', sans-serif; text-decoration: none; cursor: pointer; transition: 0.3s; width: 100%; justify-content: center; }
+        .btn-more-music:hover { background: rgba(29,185,84,0.1); border-color: var(--spotify-green); transform: translateY(-1px); }
+        .all-platforms-text { font-size: 10px; font-weight: 400; color: rgba(0,0,0,0.35); letter-spacing: 0.5px; text-align: center; }
+        .platform-icons { display: flex; align-items: center; gap: 10px; justify-content: center; flex-wrap: wrap; }
+        .platform-icon-pill { display: inline-flex; align-items: center; gap: 4px; font-size: 9px; font-weight: 600; color: rgba(0,0,0,0.3); letter-spacing: 0.5px; text-transform: uppercase; }
+        .platform-dot { width: 3px; height: 3px; background: rgba(0,0,0,0.2); border-radius: 50%; }
 
-        .music-card-footer {
-            margin-top: 18px;
-            position: relative;
-            z-index: 2;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .btn-more-music {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            background: transparent;
-            border: 1px solid rgba(29, 185, 84, 0.5);
-            color: var(--spotify-green);
-            padding: 10px 24px;
-            border-radius: 100px;
-            font-size: 13px;
-            font-weight: 600;
-            font-family: 'Montserrat', sans-serif;
-            text-decoration: none;
-            cursor: pointer;
-            transition: 0.3s;
-            width: 100%;
-            justify-content: center;
-        }
-
-        .btn-more-music:hover {
-            background: rgba(29, 185, 84, 0.1);
-            border-color: var(--spotify-green);
-            transform: translateY(-1px);
-        }
-
-        .all-platforms-text {
-            font-size: 10px;
-            font-weight: 400;
-            color: rgba(0,0,0,0.35);
-            letter-spacing: 0.5px;
-            text-align: center;
-        }
-
-        .platform-icons {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        .platform-icon-pill {
-            display: inline-flex;
-            align-items: center;
-            gap: 4px;
-            font-size: 9px;
-            font-weight: 600;
-            color: rgba(0,0,0,0.3);
-            letter-spacing: 0.5px;
-            text-transform: uppercase;
-        }
-
-        .platform-dot {
-            width: 3px;
-            height: 3px;
-            background: rgba(0,0,0,0.2);
-            border-radius: 50%;
-        }
-
-        /* --- Footer --- */
+        /* ===== FOOTER ===== */
         footer { background: var(--black-bg); color: #888; padding: 60px 10% 20px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 40px; font-size: 14px; }
         footer h4 { color: var(--white); margin-bottom: 20px; font-weight: 600; }
         .footer-links { list-style: none; line-height: 2.5; }
@@ -1106,15 +526,31 @@
         .sub-group input { padding: 10px; border: 1px solid #333; background: #111; color: white; width: 70%; font-family: inherit; }
         .sub-group button { background: #333; color: white; border: none; padding: 0 15px; cursor: pointer; font-family: inherit; }
 
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 900px) {
+            .pastor-inner { grid-template-columns: 1fr; }
+            .events-grid, .sermons-grid, .grid-3 { grid-template-columns: 1fr 1fr; }
+            .stats-bar { grid-template-columns: repeat(2, 1fr); }
+            .join-us-pillars { grid-template-columns: 1fr 1fr; }
+            .service-grid { grid-template-columns: 1fr; }
+            footer { grid-template-columns: 1fr 1fr; }
+        }
+        @media (max-width: 600px) {
+            .events-grid, .sermons-grid, .grid-3 { grid-template-columns: 1fr; }
+            .join-us-pillars { grid-template-columns: 1fr; }
+            footer { grid-template-columns: 1fr; }
+            nav ul { display: none; }
+        }
     </style>
 </head>
 <body>
 
+    <!-- ===== HEADER ===== -->
     <header>
         <div class="logo">Kingdom Bearers Global</div>
         <nav>
             <ul>
-                <li><a href="index.html">Home</a></li>
+                <li><a href="index.html" class="active">Home</a></li>
                 <li><a href="about_us.html">About</a></li>
                 <li><a href="contact_us.html">Contact</a></li>
                 <li><a href="give.html">Give</a></li>
@@ -1125,128 +561,230 @@
         <div class="header-icons"><span>🔍</span><span>🛒</span></div>
     </header>
 
-    <section class="hero-slider">
-        <div class="slide active" style="background-image: url('images/inserv.jpg')">
-            <div class="hero-content">
-                <h1>Serving Our Community</h1>
-                <p>Join us in making a difference through our many outreach programs.</p>
-                <a href="#" class="btn-teal">Upcoming Events</a>
-            </div>
+    <!-- ===== HERO — Geo-Ring Pattern ===== -->
+    <section class="hero-section">
+        <div class="hero-geo">
+            <div class="geo-ring geo-ring-1"></div>
+            <div class="geo-ring geo-ring-2"></div>
+            <div class="geo-ring geo-ring-3"></div>
+            <div class="geo-ring geo-ring-4"></div>
+            <div class="geo-stripe geo-stripe-1"></div>
+            <div class="geo-stripe geo-stripe-2"></div>
         </div>
-        <div class="slide" style="background-image: url('images/hero2.jpg')">
-            <div class="hero-content">
-                <h1>Find Your Spiritual Family</h1>
-                <p>Experience genuine connection in our vibrant church community.</p>
-                <a href="#" class="btn-teal">Learn More</a>
+        <div class="hero-content">
+            <span class="hero-eyebrow reveal-up">Welcome to Kingdom Bearers Global</span>
+            <h1 class="reveal-up" style="transition-delay:0.15s">
+                Walking in <em>Divine Balance</em>
+            </h1>
+            <div class="hero-divider reveal-fade" style="transition-delay:0.3s">
+                <div class="hero-divider-line"></div>
+                <div class="hero-divider-diamond"></div>
+                <div class="hero-divider-line"></div>
+            </div>
+            <p class="reveal-up" style="transition-delay:0.35s">
+                A movement of faith, hope, and love — declaring the holistic message of balance with a mandate to incorporate earthly and spiritual principles for dominion.
+            </p>
+            <div class="hero-actions reveal-up" style="transition-delay:0.45s">
+                <a href="event.html" class="btn-teal">Upcoming Events</a>
+                <a href="about_us.html" class="btn-outline">Learn More</a>
             </div>
         </div>
     </section>
 
-    <section class="pastor-section-wrapper">
-        <h1 class="reveal-up">Meet Our Pastor</h1>
-        <div class="pastor-container">
-            <div class="pastor-img-box reveal-left">
-                <img src="images/BPKA.webp" alt="Pastor" class="pastor-img">
+    <!-- ===== STATS BAR ===== -->
+    <div class="stats-bar">
+        <div class="stat-item reveal-up" style="transition-delay:0s">
+            <div class="stat-num">10<span class="stat-unit">K+</span></div>
+            <div class="stat-label">Lives Reached</div>
+        </div>
+        <div class="stat-item reveal-up" style="transition-delay:0.1s">
+            <div class="stat-num">12</div>
+            <div class="stat-label">Nations</div>
+        </div>
+        <div class="stat-item reveal-up" style="transition-delay:0.2s">
+            <div class="stat-num">365</div>
+            <div class="stat-label">Days of Broadcast</div>
+        </div>
+        <div class="stat-item reveal-up" style="transition-delay:0.3s">
+            <div class="stat-num">8<span class="stat-unit">+</span></div>
+            <div class="stat-label">Years of Ministry</div>
+        </div>
+    </div>
+
+    <!-- ===== PASTOR / ABOUT SECTION ===== -->
+    <section class="pastor-section">
+        <div style="text-align:center; margin-bottom:60px;" class="reveal-up">
+            <span class="section-label" style="display:block; text-align:center;">About Our Ministry</span>
+            <h2 class="section-title-center">Meet Our <em>Pastor</em></h2>
+            
+        </div>
+        <div class="pastor-inner">
+            <div class="pastor-img-block reveal-left">
+                <!-- Geo-ring pattern -->
+                <div class="pastor-geo">
+                    <div class="pastor-geo-ring pastor-geo-ring-1"></div>
+                    <div class="pastor-geo-ring pastor-geo-ring-2"></div>
+                    <div class="pastor-geo-ring pastor-geo-ring-3"></div>
+                    <div class="pastor-geo-ring pastor-geo-ring-4"></div>
+                    <div class="pastor-geo-stripe pastor-geo-stripe-1"></div>
+                    <div class="pastor-geo-stripe pastor-geo-stripe-2"></div>
+                </div>
+                <!-- Two images -->
+                <div class="pastor-imgs">
+                    <img src="images/BPKA.webp" alt="Pastor" class="pastor-img-primary">
+                    <img src="images/inserv.jpg" alt="Ministry" class="pastor-img-secondary">
+                </div>
+                <div class="pastor-accent-badge">
+                    <span>Name</span>Here Here....
+                </div>
             </div>
-            <div class="reveal-right">
-                <p class="content-text">About Kingdom Bearers Global</p>
+            <div class="pastor-text reveal-right">
+                <span class="section-label">Kingdom Bearers Global</span>
+                <h3 class="section-title">A Movement of <em>Faith & Purpose</em></h3>
+                <div class="teal-rule"></div>
                 <p class="content-text">
                     Kingdom Bearers Global is a vibrant and welcoming community dedicated to spiritual growth, fellowship, and service. We believe in fostering a supportive environment where individuals can explore their faith, build meaningful relationships, and make a positive impact in the world around them.
                 </p>
                 <p class="content-text">
-                    At Kingdom Bearers Global, we are more than a gathering—we are a movement of faith, hope, and love. Our heartbeat is to see lives transformed, families strengthened, and communities impacted through the power of God's Word and Spirit.
+                    At Kingdom Bearers Global, we are more than a gathering — we are a movement of faith, hope, and love. Our heartbeat is to see lives transformed, families strengthened, and communities impacted through the power of God's Word and Spirit.
                 </p>
-                <blockquote class="content-text">
+                <blockquote>
                     "Our mission as a church, is to declare the holistic message of balance with an ambidextrous mandate to incorporate earthly and spiritual principles for dominion."
                 </blockquote>
-                <button class="btn-learn-more">Learn More About Our community</button>
+                <button class="btn-learn-more">Learn More About Our Community</button>
             </div>
         </div>
     </section>
 
-    <section class="events-section reveal-up">
-        <h2>Upcoming Events</h2>
+    <!-- ===== UPCOMING EVENTS ===== -->
+    <section class="events-section">
+        <div class="events-header reveal-up">
+            <span class="section-label" style="display:block; text-align:center;">What's Coming</span>
+            <h2 class="section-title-center">Upcoming <em>Events</em></h2>
+            
+        </div>
         <div class="events-grid">
-            <div class="event-card">
-                <div class="date-tab">13 Sept 2025</div>
-                <img src="images/event1.jpg" alt="Event">
+            <div class="event-card reveal-up" style="transition-delay:0s">
+                <img src="images/event1.jpg" alt="Event" class="event-card-img" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                <div class="event-card-placeholder">🙌</div>
+                <div class="event-card-body">
+                    <span class="event-date-tag">13 Sept 2025</span>
+                    <div class="event-card-title">Kingdom Conference 2025</div>
+                    <div class="event-card-meta">📍 Accra, Ghana &nbsp;·&nbsp; Free Entry</div>
+                    <a href="event.html" class="event-card-btn">Register Now <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+                </div>
             </div>
-            <div class="event-card">
-                <div class="date-tab">9 Sept 2025</div>
-                <img src="images/event2.webp" alt="Event">
+            <div class="event-card reveal-up" style="transition-delay:0.1s">
+                <img src="images/event2.webp" alt="Event" class="event-card-img" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                <div class="event-card-placeholder">🔥</div>
+                <div class="event-card-body">
+                    <span class="event-date-tag">9 Sept 2025</span>
+                    <div class="event-card-title">Revival Night Service</div>
+                    <div class="event-card-meta">📍 Accra, Ghana &nbsp;·&nbsp; Free Entry</div>
+                    <a href="event.html" class="event-card-btn">Register Now <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+                </div>
             </div>
-            <div class="event-card">
-                <div class="date-tab">6 Sept 2025</div>
-                <img src="images/BPKA.png" alt="Event">
+            <div class="event-card reveal-up" style="transition-delay:0.2s">
+                <img src="images/event23.jpg" alt="Event" class="event-card-img" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                <div class="event-card-placeholder">✝️</div>
+                <div class="event-card-body">
+                    <span class="event-date-tag">6 Sept 2025</span>
+                    <div class="event-card-title">Prayer &amp; Worship Morning</div>
+                    <div class="event-card-meta">📍 Accra, Ghana &nbsp;·&nbsp; Free Entry</div>
+                    <a href="event.html" class="event-card-btn">Register Now <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+                </div>
             </div>
+        </div>
+        <div class="events-footer reveal-up">
+            <a href="event.html" class="btn-teal">View All Events</a>
         </div>
     </section>
 
-    <section class="section-padding reveal-up">
-        <h2>Our Sermons</h2>
-        <div class="grid-3">
-            <a href="https://open.spotify.com/episode/4h4wutb5mU0PWi2nInWRhC?si=OeManNmMRMmKV1JO8O6a9A" target="_blank" class="video-link">
-                 <div class="video-box" style="background-image: url('images/hero3.jpg');">
+    <!-- ===== SERMONS ===== -->
+    <section class="sermons-section">
+        <div class="sermons-header reveal-up">
+            <span class="section-label" style="display:block; text-align:center;">Watch &amp; Listen</span>
+            <h2 class="section-title-center">Our <em>Sermons</em></h2>
+           
+        </div>
+        <div class="sermons-grid">
+            <a href="https://open.spotify.com/episode/4h4wutb5mU0PWi2nInWRhC?si=OeManNmMRMmKV1JO8O6a9A" target="_blank" class="video-link reveal-up" style="transition-delay:0s">
+                <div class="video-box" style="background-image: url('images/hero3.jpg');">
                     <span class="spotify-icon"></span>
                     <div class="play-btn"></div>
+                    <div class="sermon-label-bar">
+                        <div class="sermon-label-title">The Guarding Lights</div>
+                        <div class="sermon-label-sub">Kingdom Bearers Global</div>
+                    </div>
                     <div class="sermon-info">
                         <span class="sermon-title">The Guarding Lights</span>
                         <p class="sermon-desc">This is one of the revelatory messages that will shift your mindset and impact you spiritually and shift you to move ...!!</p>
                     </div>
-                 </div>
+                </div>
             </a>
-    
-            <a href="https://open.spotify.com/episode/7h0InFQy7lWCRtjgxTtwN9?si=v-if1VX8Q-yAPVYZRaHX4A" target="_blank" class="video-link">
-               <div class="video-box" style="background-image: url('images/inserv.jpg');">
+            <a href="https://open.spotify.com/episode/7h0InFQy7lWCRtjgxTtwN9?si=v-if1VX8Q-yAPVYZRaHX4A" target="_blank" class="video-link reveal-up" style="transition-delay:0.1s">
+                <div class="video-box" style="background-image: url('images/inserv.jpg');">
                     <span class="spotify-icon"></span>
                     <div class="play-btn"></div>
+                    <div class="sermon-label-bar">
+                        <div class="sermon-label-title">Divine Acceleration into Destiny</div>
+                        <div class="sermon-label-sub">Kingdom Bearers Global</div>
+                    </div>
                     <div class="sermon-info">
                         <span class="sermon-title">Divine Acceleration into Destiny</span>
                         <p class="sermon-desc">In this message, the man of God explained why the voice of men can distort the instructions from God and how to move with speed in destiny fulfillment.</p>
                     </div>
-               </div>
-             </a>
-    
-             <a href="https://open.spotify.com/episode/4jQ5duFpt0GSPmyNeTGUIh?si=JPUfi1mEQe-JaF2lKatYHw" target="_blank" class="video-link">
-                 <div class="video-box" style="background-image: url('images/sermon4.jpg');">
+                </div>
+            </a>
+            <a href="https://open.spotify.com/episode/4jQ5duFpt0GSPmyNeTGUIh?si=JPUfi1mEQe-JaF2lKatYHw" target="_blank" class="video-link reveal-up" style="transition-delay:0.2s">
+                <div class="video-box" style="background-image: url('images/sermon4.jpg');">
                     <span class="spotify-icon"></span>
                     <div class="play-btn"></div>
+                    <div class="sermon-label-bar">
+                        <div class="sermon-label-title">Bridging Mistakes (Why Men Fail)</div>
+                        <div class="sermon-label-sub">Kingdom Bearers Global</div>
+                    </div>
                     <div class="sermon-info">
                         <span class="sermon-title">Bridging Mistakes (Why Men Fail)</span>
                         <p class="sermon-desc">In this message, the man of God addresses the common pitfalls that lead to failure and offers divine insights on how to overcome them.</p>
                     </div>
-                 </div>
+                </div>
             </a>
+        </div>
+        <div class="sermons-footer reveal-up">
+            <a href="https://bantwi281.podbean.com/" target="_blank" class="btn-teal">Listen to All Sermons</a>
         </div>
     </section>
 
+    <!-- ===== FEATURED PRODUCTS — UNTOUCHED ===== -->
     <section class="section-padding reveal-up" style="background: white;">
-        <h2>Featured Products</h2>
+        <h2>Featured Released Products</h2>
         <div class="grid-3">
             <div class="product-card">
                 <img src="images/book1.jpg" alt="Product">
                 <h3 style="margin: 15px 0;">Mállon teleíose</h3>
                 <p style="color: var(--primary-purple); font-weight: 500;">GH₵46.00</p>
-                <button class="btn-teal" style="width: 100%; background: none; border: 1px solid #00a896; color: #00a896;">Add to Cart</button>
+                <button class="btn-teal" style="width: 100%; background: none; border: 1px solid #000000; color: #000000;">Add to Cart</button>
             </div>
             <div class="product-card">
                 <img src="images/book1.jpg" alt="Product">
                 <h3 style="margin: 15px 0;">Állaxes</h3>
                 <p style="color: var(--primary-purple); font-weight: 500;">GH₵45.00</p>
-                <button class="btn-teal" style="width: 100%; background: none; border: 1px solid #00a896; color: #00a896;">Add to Cart</button>
+                <button class="btn-teal" style="width: 100%; background: none; border: 1px solid #000000; color: #000000;">Add to Cart</button>
             </div>
             <div class="product-card">
                 <img src="images/book1.jpg" alt="Product">
                 <h3 style="margin: 15px 0;">Egó Kai Móno</h3>
                 <p style="color: var(--primary-purple); font-weight: 500;">GH₵30.00</p>
-                <button class="btn-teal" style="width: 100%; background: none; border: 1px solid #00a896; color: #00a896;">Add to Cart</button>
+                <button class="btn-teal" style="width: 100%; background: none; border: 1px solid #000000; color: #000000;">Add to Cart</button>
             </div>
         </div>
         <div style="margin-top: 40px; text-align: center;">
-            <a href="#" class="btn-teal">Shop Now</a>
+            <a href="store.html" class="btn-teal">Shop Now</a>
         </div>
     </section>
 
+    <!-- ===== YOU ARE WELCOME HERE — UNTOUCHED ===== -->
     <section class="join-us-section reveal-up">
         <div class="join-us-rule">
             <span></span>
@@ -1254,12 +792,8 @@
             <span></span>
         </div>
         <p class="join-us-eyebrow">You Are Welcome Here</p>
-        <h2 class="join-us-heading">
-            Become Part of Something<br><em>Greater Than Yourself</em>
-        </h2>
-        <p class="join-us-subtext">
-            Whether you are seeking spiritual depth, meaningful community, or a place to serve, Kingdom Bearers Global is your home. Step into a life of purpose, dominion, and divine balance.
-        </p>
+        <h2 class="join-us-heading">Become Part of Something<br><em>Greater Than Yourself</em></h2>
+        <p class="join-us-subtext">Whether you are seeking spiritual depth, meaningful community, or a place to serve, Kingdom Bearers Global is your home. Step into a life of purpose, dominion, and divine balance.</p>
         <div class="join-us-pillars">
             <div class="pillar-card">
                 <p class="pillar-title">Worship</p>
@@ -1280,18 +814,13 @@
         <p class="join-us-verse">"For where two or three are gathered together in my name, there am I in the midst of them." — Matthew 18:20</p>
     </section>
 
-    <!-- ============================================
-         JOIN OUR SERVICE SECTION
-    ============================================ -->
+    <!-- ===== JOIN OUR SERVICE — UNTOUCHED ===== -->
     <section class="join-service-section reveal-up">
         <h2>Join Our Service</h2>
         <div class="service-grid">
-
-            <!-- PodBean Column -->
             <div class="podbean-card reveal-left">
                 <div class="podbean-logo-wrap">
                     <div class="podbean-logo-circle">
-                        <!-- PodBean microphone icon (SVG) -->
                         <svg viewBox="0 0 46 46" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <circle cx="23" cy="17" r="8" fill="white" opacity="0.15"/>
                             <rect x="18" y="9" width="10" height="16" rx="5" fill="white"/>
@@ -1302,68 +831,40 @@
                     </div>
                     <p class="podbean-brand-name">PodBean</p>
                 </div>
-
                 <h3>Live Podcast Service</h3>
-
-                <div class="live-badge">
-                    <span class="live-dot"></span>
-                    Live Daily · 12AM GMT
-                </div>
-
-                <div class="wave-bars">
-                    <div class="wave-bar"></div>
-                    <div class="wave-bar"></div>
-                    <div class="wave-bar"></div>
-                    <div class="wave-bar"></div>
-                    <div class="wave-bar"></div>
-                    <div class="wave-bar"></div>
-                    <div class="wave-bar"></div>
-                </div>
-
+                <div class="live-badge"><span class="live-dot"></span>Live Daily · 12AM GMT</div>
+                <div class="wave-bars"><div class="wave-bar"></div><div class="wave-bar"></div><div class="wave-bar"></div><div class="wave-bar"></div><div class="wave-bar"></div><div class="wave-bar"></div><div class="wave-bar"></div></div>
                 <p>Tune in every day at 12AM GMT for our live podcast service. Experience powerful messages, worship, and spiritual insights — streamed directly to you wherever you are.</p>
-
                 <a href="https://bantwi281.podbean.com/" target="_blank" class="btn-podbean">
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/></svg>
                     Listen on PodBean
                 </a>
             </div>
 
-            <!-- WhatsApp Prayer Column -->
             <div class="whatsapp-card reveal-up">
                 <div class="whatsapp-logo-wrap">
                     <div class="whatsapp-logo-circle">
-                        <!-- WhatsApp icon (SVG) -->
                         <svg viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" clip-rule="evenodd" d="M25 5C14 5 5 14 5 25c0 3.5.94 6.8 2.58 9.67L5 45l10.6-2.54A20 20 0 0 0 25 45c11 0 20-9 20-20S36 5 25 5zm0 36a16 16 0 0 1-8.17-2.25l-.58-.35-6.05 1.45 1.5-5.88-.38-.6A16 16 0 1 1 25 41zm8.77-11.97c-.48-.24-2.83-1.4-3.27-1.56-.44-.16-.76-.24-1.08.24-.32.48-1.24 1.56-1.52 1.88-.28.32-.56.36-1.04.12-.48-.24-2.02-.74-3.85-2.37-1.42-1.27-2.38-2.84-2.66-3.32-.28-.48-.03-.74.21-.98.22-.22.48-.56.72-.84.24-.28.32-.48.48-.8.16-.32.08-.6-.04-.84-.12-.24-1.08-2.6-1.48-3.56-.39-.93-.79-.8-1.08-.82-.28-.02-.6-.02-.92-.02-.32 0-.84.12-1.28.6-.44.48-1.68 1.64-1.68 4s1.72 4.64 1.96 4.96c.24.32 3.38 5.16 8.2 7.24 1.15.49 2.04.79 2.74 1.01 1.15.36 2.2.31 3.03.19.92-.14 2.83-1.16 3.23-2.28.4-1.12.4-2.08.28-2.28-.12-.2-.44-.32-.92-.56z" fill="white"/>
                         </svg>
                     </div>
                     <p class="whatsapp-brand-name">WhatsApp</p>
                 </div>
-
                 <h3>Prayer Community</h3>
-
-                <div class="prayer-badge">
-                    🙏 &nbsp;Open to All
-                </div>
-
+                <div class="prayer-badge">🙏 &nbsp;Open to All</div>
                 <span class="prayer-hand-anim">🙌</span>
-
                 <p>Join our dedicated WhatsApp prayer group and be part of a praying community. Submit requests, intercede for others, and experience the power of collective faith 24/7.</p>
-
                 <a href="https://wa.me/+233000000000" target="_blank" class="btn-whatsapp">
                     <svg width="16" height="16" viewBox="0 0 50 50" fill="white" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M25 5C14 5 5 14 5 25c0 3.5.94 6.8 2.58 9.67L5 45l10.6-2.54A20 20 0 0 0 25 45c11 0 20-9 20-20S36 5 25 5zm8.77 29.03c-.48-.24-2.83-1.4-3.27-1.56-.44-.16-.76-.24-1.08.24-.32.48-1.24 1.56-1.52 1.88-.28.32-.56.36-1.04.12-.48-.24-2.02-.74-3.85-2.37-1.42-1.27-2.38-2.84-2.66-3.32-.28-.48-.03-.74.21-.98.22-.22.48-.56.72-.84.24-.28.32-.48.48-.8.16-.32.08-.6-.04-.84-.12-.24-1.08-2.6-1.48-3.56-.39-.93-.79-.8-1.08-.82-.28-.02-.6-.02-.92-.02-.32 0-.84.12-1.28.6-.44.48-1.68 1.64-1.68 4s1.72 4.64 1.96 4.96c.24.32 3.38 5.16 8.2 7.24 1.15.49 2.04.79 2.74 1.01 1.15.36 2.2.31 3.03.19.92-.14 2.83-1.16 3.23-2.28.4-1.12.4-2.08.28-2.28-.12-.2-.44-.32-.92-.56z"/></svg>
                     Join Prayer Group
                 </a>
             </div>
 
-            <!-- Music Column -->
             <div class="music-card reveal-right">
                 <div class="music-card-header">
                     <div class="music-card-title-group">
                         <div class="music-spotify-badge">
-                            <svg viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm4.586 14.424a.622.622 0 0 1-.857.207c-2.348-1.435-5.304-1.76-8.785-.964a.623.623 0 0 1-.277-1.215c3.809-.87 7.076-.496 9.712 1.115a.623.623 0 0 1 .207.857zm1.223-2.722a.779.779 0 0 1-1.072.257c-2.687-1.652-6.785-2.131-9.965-1.166a.779.779 0 0 1-.968-.519.779.779 0 0 1 .52-.968c3.632-1.102 8.147-.568 11.228 1.324a.78.78 0 0 1 .257 1.072zm.105-2.835C14.692 8.95 9.375 8.775 6.297 9.71a.935.935 0 1 1-.543-1.79c3.532-1.072 9.404-.866 13.115 1.338a.935.935 0 0 1-.955 1.609z"/>
-                            </svg>
+                            <svg viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm4.586 14.424a.622.622 0 0 1-.857.207c-2.348-1.435-5.304-1.76-8.785-.964a.623.623 0 0 1-.277-1.215c3.809-.87 7.076-.496 9.712 1.115a.623.623 0 0 1 .207.857zm1.223-2.722a.779.779 0 0 1-1.072.257c-2.687-1.652-6.785-2.131-9.965-1.166a.779.779 0 0 1-.968-.519.779.779 0 0 1 .52-.968c3.632-1.102 8.147-.568 11.228 1.324a.78.78 0 0 1 .257 1.072zm.105-2.835C14.692 8.95 9.375 8.775 6.297 9.71a.935.935 0 1 1-.543-1.79c3.532-1.072 9.404-.866 13.115 1.338a.935.935 0 0 1-.955 1.609z"/></svg>
                         </div>
                         <div>
                             <div class="music-card-title">Our Music</div>
@@ -1371,146 +872,21 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="music-list-wrapper">
                     <div class="music-list-scroll" id="musicList">
-                        <!-- Track 1 -->
-                        <a href="https://open.spotify.com/track/4hf3vlneWbQl2le3JwdRVx?si=f79daaad02074b53" target="_blank" class="music-track">
-                            <div class="track-number-wrap">
-                                <span class="track-number">1</span>
-                                <span class="track-play-icon">▶</span>
-                            </div>
-                            <div class="track-thumbnail"> <img src="images/your word.png" alt="Your Word" /></div>
-                            <div class="track-info">
-                                <div class="track-name">Your Word</div>
-                                <div class="track-artist">B.P.K.A</div>
-                            </div>
-                            <svg class="track-spotify-link" viewBox="0 0 24 24" fill="#1db954" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm4.586 14.424a.622.622 0 0 1-.857.207c-2.348-1.435-5.304-1.76-8.785-.964a.623.623 0 0 1-.277-1.215c3.809-.87 7.076-.496 9.712 1.115a.623.623 0 0 1 .207.857zm1.223-2.722a.779.779 0 0 1-1.072.257c-2.687-1.652-6.785-2.131-9.965-1.166a.779.779 0 0 1-.968-.519.779.779 0 0 1 .52-.968c3.632-1.102 8.147-.568 11.228 1.324a.78.78 0 0 1 .257 1.072zm.105-2.835C14.692 8.95 9.375 8.775 6.297 9.71a.935.935 0 1 1-.543-1.79c3.532-1.072 9.404-.866 13.115 1.338a.935.935 0 0 1-.955 1.609z"/></svg>
-                        </a>
-                        <!-- Track 2 -->
-                        <a href="https://open.spotify.com/track/6pk0PximomRhpptCUZ9rio?si=cc665621d8164fc5" target="_blank" class="music-track">
-                            <div class="track-number-wrap">
-                                <span class="track-number">2</span>
-                                <span class="track-play-icon">▶</span>
-                            </div>
-                            <div class="track-thumbnail"> <img src="images/jesus_my_joy.png" alt="Jesus My Joy" /></div>
-                            <div class="track-info">
-                                <div class="track-name">Jesus My Joy</div>
-                                <div class="track-artist">B.P.K.A</div>
-                            </div>
-                            <svg class="track-spotify-link" viewBox="0 0 24 24" fill="#1db954" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm4.586 14.424a.622.622 0 0 1-.857.207c-2.348-1.435-5.304-1.76-8.785-.964a.623.623 0 0 1-.277-1.215c3.809-.87 7.076-.496 9.712 1.115a.623.623 0 0 1 .207.857zm1.223-2.722a.779.779 0 0 1-1.072.257c-2.687-1.652-6.785-2.131-9.965-1.166a.779.779 0 0 1-.968-.519.779.779 0 0 1 .52-.968c3.632-1.102 8.147-.568 11.228 1.324a.78.78 0 0 1 .257 1.072zm.105-2.835C14.692 8.95 9.375 8.775 6.297 9.71a.935.935 0 1 1-.543-1.79c3.532-1.072 9.404-.866 13.115 1.338a.935.935 0 0 1-.955 1.609z"/></svg>
-                        </a>
-                        <!-- Track 3 -->
-                        <a href="https://open.spotify.com/track/32tsJkHoiehcKxpD6twfqL?si=74584176921845d7" target="_blank" class="music-track">
-                            <div class="track-number-wrap">
-                                <span class="track-number">3</span>
-                                <span class="track-play-icon">▶</span>
-                            </div>
-                            <div class="track-thumbnail"> <img src="images/send_down_revival.png" alt="Send Down Revival" /></div>
-                            <div class="track-info">
-                                <div class="track-name">Send Down Revival</div>
-                                <div class="track-artist">B.P.K.A</div>
-                            </div>
-                            <svg class="track-spotify-link" viewBox="0 0 24 24" fill="#1db954" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm4.586 14.424a.622.622 0 0 1-.857.207c-2.348-1.435-5.304-1.76-8.785-.964a.623.623 0 0 1-.277-1.215c3.809-.87 7.076-.496 9.712 1.115a.623.623 0 0 1 .207.857zm1.223-2.722a.779.779 0 0 1-1.072.257c-2.687-1.652-6.785-2.131-9.965-1.166a.779.779 0 0 1-.968-.519.779.779 0 0 1 .52-.968c3.632-1.102 8.147-.568 11.228 1.324a.78.78 0 0 1 .257 1.072zm.105-2.835C14.692 8.95 9.375 8.775 6.297 9.71a.935.935 0 1 1-.543-1.79c3.532-1.072 9.404-.866 13.115 1.338a.935.935 0 0 1-.955 1.609z"/></svg>
-                        </a>
-                        <!-- Track 4 -->
-                        <a href="https://open.spotify.com/track/2p4t0r2L5lg0nb9UNDW02j?si=734c598056ed4afa" target="_blank" class="music-track">
-                            <div class="track-number-wrap">
-                                <span class="track-number">4</span>
-                                <span class="track-play-icon">▶</span>
-                            </div>
-                            <div class="track-thumbnail"> <img src="images/I_will_tarry.png" alt="I Will Tarry" /></div>
-                            <div class="track-info">
-                                <div class="track-name">I Will Tarry</div>
-                                <div class="track-artist">B.P.K.A</div>
-                            </div>
-                            <svg class="track-spotify-link" viewBox="0 0 24 24" fill="#1db954" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm4.586 14.424a.622.622 0 0 1-.857.207c-2.348-1.435-5.304-1.76-8.785-.964a.623.623 0 0 1-.277-1.215c3.809-.87 7.076-.496 9.712 1.115a.623.623 0 0 1 .207.857zm1.223-2.722a.779.779 0 0 1-1.072.257c-2.687-1.652-6.785-2.131-9.965-1.166a.779.779 0 0 1-.968-.519.779.779 0 0 1 .52-.968c3.632-1.102 8.147-.568 11.228 1.324a.78.78 0 0 1 .257 1.072zm.105-2.835C14.692 8.95 9.375 8.775 6.297 9.71a.935.935 0 1 1-.543-1.79c3.532-1.072 9.404-.866 13.115 1.338a.935.935 0 0 1-.955 1.609z"/></svg>
-                        </a>
-                        <!-- Track 5 -->
-                        <a href="https://open.spotify.com/track/2iuECUMClUYuu82LnkfiUO?si=9d620b1fe47a4ba2" target="_blank" class="music-track">
-                            <div class="track-number-wrap">
-                                <span class="track-number">5</span>
-                                <span class="track-play-icon">▶</span>
-                            </div>
-                            <div class="track-thumbnail"> <img src="images/ohimma.png" alt="Oh Immanuel" /></div>
-                            <div class="track-info">
-                                <div class="track-name">Oh Immanuel</div>
-                                <div class="track-artist">B.P.K.A</div>
-                            </div>
-                            <svg class="track-spotify-link" viewBox="0 0 24 24" fill="#1db954" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm4.586 14.424a.622.622 0 0 1-.857.207c-2.348-1.435-5.304-1.76-8.785-.964a.623.623 0 0 1-.277-1.215c3.809-.87 7.076-.496 9.712 1.115a.623.623 0 0 1 .207.857zm1.223-2.722a.779.779 0 0 1-1.072.257c-2.687-1.652-6.785-2.131-9.965-1.166a.779.779 0 0 1-.968-.519.779.779 0 0 1 .52-.968c3.632-1.102 8.147-.568 11.228 1.324a.78.78 0 0 1 .257 1.072zm.105-2.835C14.692 8.95 9.375 8.775 6.297 9.71a.935.935 0 1 1-.543-1.79c3.532-1.072 9.404-.866 13.115 1.338a.935.935 0 0 1-.955 1.609z"/></svg>
-                        </a>
-                        <!-- Track 6 -->
-                        <a href="https://open.spotify.com/track/45jcMqjo5VHMOP9vv1hPxx?si=4ba76c999e314063" target="_blank" class="music-track">
-                            <div class="track-number-wrap">
-                                <span class="track-number">6</span>
-                                <span class="track-play-icon">▶</span>
-                            </div>
-                            <div class="track-thumbnail"> <img src="images/we are not alone.png" alt="We are not Alone" /></div>
-                            <div class="track-info">
-                                <div class="track-name">We are not Alone</div>
-                                <div class="track-artist">B.P.K.A</div>
-                            </div>
-                            <svg class="track-spotify-link" viewBox="0 0 24 24" fill="#1db954" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm4.586 14.424a.622.622 0 0 1-.857.207c-2.348-1.435-5.304-1.76-8.785-.964a.623.623 0 0 1-.277-1.215c3.809-.87 7.076-.496 9.712 1.115a.623.623 0 0 1 .207.857zm1.223-2.722a.779.779 0 0 1-1.072.257c-2.687-1.652-6.785-2.131-9.965-1.166a.779.779 0 0 1-.968-.519.779.779 0 0 1 .52-.968c3.632-1.102 8.147-.568 11.228 1.324a.78.78 0 0 1 .257 1.072zm.105-2.835C14.692 8.95 9.375 8.775 6.297 9.71a.935.935 0 1 1-.543-1.79c3.532-1.072 9.404-.866 13.115 1.338a.935.935 0 0 1-.955 1.609z"/></svg>
-                        </a>
-                        <!-- Track 7 -->
-                        <a href="https://open.spotify.com/track/REPLACE_TRACK_7" target="_blank" class="music-track">
-                            <div class="track-number-wrap">
-                                <span class="track-number">7</span>
-                                <span class="track-play-icon">▶</span>
-                            </div>
-                            <div class="track-thumbnail">🎵</div>
-                            <div class="track-info">
-                                <div class="track-name">Track Title 7</div>
-                                <div class="track-artist">Kingdom Bearers Global</div>
-                            </div>
-                            <svg class="track-spotify-link" viewBox="0 0 24 24" fill="#1db954" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm4.586 14.424a.622.622 0 0 1-.857.207c-2.348-1.435-5.304-1.76-8.785-.964a.623.623 0 0 1-.277-1.215c3.809-.87 7.076-.496 9.712 1.115a.623.623 0 0 1 .207.857zm1.223-2.722a.779.779 0 0 1-1.072.257c-2.687-1.652-6.785-2.131-9.965-1.166a.779.779 0 0 1-.968-.519.779.779 0 0 1 .52-.968c3.632-1.102 8.147-.568 11.228 1.324a.78.78 0 0 1 .257 1.072zm.105-2.835C14.692 8.95 9.375 8.775 6.297 9.71a.935.935 0 1 1-.543-1.79c3.532-1.072 9.404-.866 13.115 1.338a.935.935 0 0 1-.955 1.609z"/></svg>
-                        </a>
-                        <!-- Track 8 -->
-                        <a href="https://open.spotify.com/track/REPLACE_TRACK_8" target="_blank" class="music-track">
-                            <div class="track-number-wrap">
-                                <span class="track-number">8</span>
-                                <span class="track-play-icon">▶</span>
-                            </div>
-                            <div class="track-thumbnail">🎵</div>
-                            <div class="track-info">
-                                <div class="track-name">Track Title 8</div>
-                                <div class="track-artist">Kingdom Bearers Global</div>
-                            </div>
-                            <svg class="track-spotify-link" viewBox="0 0 24 24" fill="#1db954" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm4.586 14.424a.622.622 0 0 1-.857.207c-2.348-1.435-5.304-1.76-8.785-.964a.623.623 0 0 1-.277-1.215c3.809-.87 7.076-.496 9.712 1.115a.623.623 0 0 1 .207.857zm1.223-2.722a.779.779 0 0 1-1.072.257c-2.687-1.652-6.785-2.131-9.965-1.166a.779.779 0 0 1-.968-.519.779.779 0 0 1 .52-.968c3.632-1.102 8.147-.568 11.228 1.324a.78.78 0 0 1 .257 1.072zm.105-2.835C14.692 8.95 9.375 8.775 6.297 9.71a.935.935 0 1 1-.543-1.79c3.532-1.072 9.404-.866 13.115 1.338a.935.935 0 0 1-.955 1.609z"/></svg>
-                        </a>
-                        <!-- Track 9 -->
-                        <a href="https://open.spotify.com/track/REPLACE_TRACK_9" target="_blank" class="music-track">
-                            <div class="track-number-wrap">
-                                <span class="track-number">9</span>
-                                <span class="track-play-icon">▶</span>
-                            </div>
-                            <div class="track-thumbnail">🎵</div>
-                            <div class="track-info">
-                                <div class="track-name">Track Title 9</div>
-                                <div class="track-artist">Kingdom Bearers Global</div>
-                            </div>
-                            <svg class="track-spotify-link" viewBox="0 0 24 24" fill="#1db954" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm4.586 14.424a.622.622 0 0 1-.857.207c-2.348-1.435-5.304-1.76-8.785-.964a.623.623 0 0 1-.277-1.215c3.809-.87 7.076-.496 9.712 1.115a.623.623 0 0 1 .207.857zm1.223-2.722a.779.779 0 0 1-1.072.257c-2.687-1.652-6.785-2.131-9.965-1.166a.779.779 0 0 1-.968-.519.779.779 0 0 1 .52-.968c3.632-1.102 8.147-.568 11.228 1.324a.78.78 0 0 1 .257 1.072zm.105-2.835C14.692 8.95 9.375 8.775 6.297 9.71a.935.935 0 1 1-.543-1.79c3.532-1.072 9.404-.866 13.115 1.338a.935.935 0 0 1-.955 1.609z"/></svg>
-                        </a>
-                        <!-- Track 10 -->
-                        <a href="https://open.spotify.com/track/REPLACE_TRACK_10" target="_blank" class="music-track">
-                            <div class="track-number-wrap">
-                                <span class="track-number">10</span>
-                                <span class="track-play-icon">▶</span>
-                            </div>
-                            <div class="track-thumbnail">🎵</div>
-                            <div class="track-info">
-                                <div class="track-name">Track Title 10</div>
-                                <div class="track-artist">Kingdom Bearers Global</div>
-                            </div>
-                            <svg class="track-spotify-link" viewBox="0 0 24 24" fill="#1db954" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm4.586 14.424a.622.622 0 0 1-.857.207c-2.348-1.435-5.304-1.76-8.785-.964a.623.623 0 0 1-.277-1.215c3.809-.87 7.076-.496 9.712 1.115a.623.623 0 0 1 .207.857zm1.223-2.722a.779.779 0 0 1-1.072.257c-2.687-1.652-6.785-2.131-9.965-1.166a.779.779 0 0 1-.968-.519.779.779 0 0 1 .52-.968c3.632-1.102 8.147-.568 11.228 1.324a.78.78 0 0 1 .257 1.072zm.105-2.835C14.692 8.95 9.375 8.775 6.297 9.71a.935.935 0 1 1-.543-1.79c3.532-1.072 9.404-.866 13.115 1.338a.935.935 0 0 1-.955 1.609z"/></svg>
-                        </a>
+                        <a href="https://open.spotify.com/track/4hf3vlneWbQl2le3JwdRVx?si=f79daaad02074b53" target="_blank" class="music-track"><div class="track-number-wrap"><span class="track-number">1</span><span class="track-play-icon">▶</span></div><div class="track-thumbnail"><img src="images/your word.png" alt="Your Word"/></div><div class="track-info"><div class="track-name">Your Word</div><div class="track-artist">B.P.K.A</div></div><svg class="track-spotify-link" viewBox="0 0 24 24" fill="#1db954" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm4.586 14.424a.622.622 0 0 1-.857.207c-2.348-1.435-5.304-1.76-8.785-.964a.623.623 0 0 1-.277-1.215c3.809-.87 7.076-.496 9.712 1.115a.623.623 0 0 1 .207.857zm1.223-2.722a.779.779 0 0 1-1.072.257c-2.687-1.652-6.785-2.131-9.965-1.166a.779.779 0 0 1-.968-.519.779.779 0 0 1 .52-.968c3.632-1.102 8.147-.568 11.228 1.324a.78.78 0 0 1 .257 1.072zm.105-2.835C14.692 8.95 9.375 8.775 6.297 9.71a.935.935 0 1 1-.543-1.79c3.532-1.072 9.404-.866 13.115 1.338a.935.935 0 0 1-.955 1.609z"/></svg></a>
+                        <a href="https://open.spotify.com/track/6pk0PximomRhpptCUZ9rio?si=cc665621d8164fc5" target="_blank" class="music-track"><div class="track-number-wrap"><span class="track-number">2</span><span class="track-play-icon">▶</span></div><div class="track-thumbnail"><img src="images/jesus_my_joy.png" alt="Jesus My Joy"/></div><div class="track-info"><div class="track-name">Jesus My Joy</div><div class="track-artist">B.P.K.A</div></div><svg class="track-spotify-link" viewBox="0 0 24 24" fill="#1db954" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm4.586 14.424a.622.622 0 0 1-.857.207c-2.348-1.435-5.304-1.76-8.785-.964a.623.623 0 0 1-.277-1.215c3.809-.87 7.076-.496 9.712 1.115a.623.623 0 0 1 .207.857zm1.223-2.722a.779.779 0 0 1-1.072.257c-2.687-1.652-6.785-2.131-9.965-1.166a.779.779 0 0 1-.968-.519.779.779 0 0 1 .52-.968c3.632-1.102 8.147-.568 11.228 1.324a.78.78 0 0 1 .257 1.072zm.105-2.835C14.692 8.95 9.375 8.775 6.297 9.71a.935.935 0 1 1-.543-1.79c3.532-1.072 9.404-.866 13.115 1.338a.935.935 0 0 1-.955 1.609z"/></svg></a>
+                        <a href="https://open.spotify.com/track/32tsJkHoiehcKxpD6twfqL?si=74584176921845d7" target="_blank" class="music-track"><div class="track-number-wrap"><span class="track-number">3</span><span class="track-play-icon">▶</span></div><div class="track-thumbnail"><img src="images/send_down_revival.png" alt="Send Down Revival"/></div><div class="track-info"><div class="track-name">Send Down Revival</div><div class="track-artist">B.P.K.A</div></div><svg class="track-spotify-link" viewBox="0 0 24 24" fill="#1db954" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm4.586 14.424a.622.622 0 0 1-.857.207c-2.348-1.435-5.304-1.76-8.785-.964a.623.623 0 0 1-.277-1.215c3.809-.87 7.076-.496 9.712 1.115a.623.623 0 0 1 .207.857zm1.223-2.722a.779.779 0 0 1-1.072.257c-2.687-1.652-6.785-2.131-9.965-1.166a.779.779 0 0 1-.968-.519.779.779 0 0 1 .52-.968c3.632-1.102 8.147-.568 11.228 1.324a.78.78 0 0 1 .257 1.072zm.105-2.835C14.692 8.95 9.375 8.775 6.297 9.71a.935.935 0 1 1-.543-1.79c3.532-1.072 9.404-.866 13.115 1.338a.935.935 0 0 1-.955 1.609z"/></svg></a>
+                        <a href="https://open.spotify.com/track/2p4t0r2L5lg0nb9UNDW02j?si=734c598056ed4afa" target="_blank" class="music-track"><div class="track-number-wrap"><span class="track-number">4</span><span class="track-play-icon">▶</span></div><div class="track-thumbnail"><img src="images/I_will_tarry.png" alt="I Will Tarry"/></div><div class="track-info"><div class="track-name">I Will Tarry</div><div class="track-artist">B.P.K.A</div></div><svg class="track-spotify-link" viewBox="0 0 24 24" fill="#1db954" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm4.586 14.424a.622.622 0 0 1-.857.207c-2.348-1.435-5.304-1.76-8.785-.964a.623.623 0 0 1-.277-1.215c3.809-.87 7.076-.496 9.712 1.115a.623.623 0 0 1 .207.857zm1.223-2.722a.779.779 0 0 1-1.072.257c-2.687-1.652-6.785-2.131-9.965-1.166a.779.779 0 0 1-.968-.519.779.779 0 0 1 .52-.968c3.632-1.102 8.147-.568 11.228 1.324a.78.78 0 0 1 .257 1.072zm.105-2.835C14.692 8.95 9.375 8.775 6.297 9.71a.935.935 0 1 1-.543-1.79c3.532-1.072 9.404-.866 13.115 1.338a.935.935 0 0 1-.955 1.609z"/></svg></a>
+                        <a href="https://open.spotify.com/track/2iuECUMClUYuu82LnkfiUO?si=9d620b1fe47a4ba2" target="_blank" class="music-track"><div class="track-number-wrap"><span class="track-number">5</span><span class="track-play-icon">▶</span></div><div class="track-thumbnail"><img src="images/ohimma.png" alt="Oh Immanuel"/></div><div class="track-info"><div class="track-name">Oh Immanuel</div><div class="track-artist">B.P.K.A</div></div><svg class="track-spotify-link" viewBox="0 0 24 24" fill="#1db954" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm4.586 14.424a.622.622 0 0 1-.857.207c-2.348-1.435-5.304-1.76-8.785-.964a.623.623 0 0 1-.277-1.215c3.809-.87 7.076-.496 9.712 1.115a.623.623 0 0 1 .207.857zm1.223-2.722a.779.779 0 0 1-1.072.257c-2.687-1.652-6.785-2.131-9.965-1.166a.779.779 0 0 1-.968-.519.779.779 0 0 1 .52-.968c3.632-1.102 8.147-.568 11.228 1.324a.78.78 0 0 1 .257 1.072zm.105-2.835C14.692 8.95 9.375 8.775 6.297 9.71a.935.935 0 1 1-.543-1.79c3.532-1.072 9.404-.866 13.115 1.338a.935.935 0 0 1-.955 1.609z"/></svg></a>
+                        <a href="https://open.spotify.com/track/45jcMqjo5VHMOP9vv1hPxx?si=4ba76c999e314063" target="_blank" class="music-track"><div class="track-number-wrap"><span class="track-number">6</span><span class="track-play-icon">▶</span></div><div class="track-thumbnail"><img src="images/we are not alone.png" alt="We are not Alone"/></div><div class="track-info"><div class="track-name">We are not Alone</div><div class="track-artist">B.P.K.A</div></div><svg class="track-spotify-link" viewBox="0 0 24 24" fill="#1db954" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm4.586 14.424a.622.622 0 0 1-.857.207c-2.348-1.435-5.304-1.76-8.785-.964a.623.623 0 0 1-.277-1.215c3.809-.87 7.076-.496 9.712 1.115a.623.623 0 0 1 .207.857zm1.223-2.722a.779.779 0 0 1-1.072.257c-2.687-1.652-6.785-2.131-9.965-1.166a.779.779 0 0 1-.968-.519.779.779 0 0 1 .52-.968c3.632-1.102 8.147-.568 11.228 1.324a.78.78 0 0 1 .257 1.072zm.105-2.835C14.692 8.95 9.375 8.775 6.297 9.71a.935.935 0 1 1-.543-1.79c3.532-1.072 9.404-.866 13.115 1.338a.935.935 0 0 1-.955 1.609z"/></svg></a>
+                        <a href="https://open.spotify.com/track/REPLACE_TRACK_7" target="_blank" class="music-track"><div class="track-number-wrap"><span class="track-number">7</span><span class="track-play-icon">▶</span></div><div class="track-thumbnail">🎵</div><div class="track-info"><div class="track-name">Track Title 7</div><div class="track-artist">Kingdom Bearers Global</div></div><svg class="track-spotify-link" viewBox="0 0 24 24" fill="#1db954" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm4.586 14.424a.622.622 0 0 1-.857.207c-2.348-1.435-5.304-1.76-8.785-.964a.623.623 0 0 1-.277-1.215c3.809-.87 7.076-.496 9.712 1.115a.623.623 0 0 1 .207.857zm1.223-2.722a.779.779 0 0 1-1.072.257c-2.687-1.652-6.785-2.131-9.965-1.166a.779.779 0 0 1-.968-.519.779.779 0 0 1 .52-.968c3.632-1.102 8.147-.568 11.228 1.324a.78.78 0 0 1 .257 1.072zm.105-2.835C14.692 8.95 9.375 8.775 6.297 9.71a.935.935 0 1 1-.543-1.79c3.532-1.072 9.404-.866 13.115 1.338a.935.935 0 0 1-.955 1.609z"/></svg></a>
+                        <a href="https://open.spotify.com/track/REPLACE_TRACK_8" target="_blank" class="music-track"><div class="track-number-wrap"><span class="track-number">8</span><span class="track-play-icon">▶</span></div><div class="track-thumbnail">🎵</div><div class="track-info"><div class="track-name">Track Title 8</div><div class="track-artist">Kingdom Bearers Global</div></div><svg class="track-spotify-link" viewBox="0 0 24 24" fill="#1db954" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm4.586 14.424a.622.622 0 0 1-.857.207c-2.348-1.435-5.304-1.76-8.785-.964a.623.623 0 0 1-.277-1.215c3.809-.87 7.076-.496 9.712 1.115a.623.623 0 0 1 .207.857zm1.223-2.722a.779.779 0 0 1-1.072.257c-2.687-1.652-6.785-2.131-9.965-1.166a.779.779 0 0 1-.968-.519.779.779 0 0 1 .52-.968c3.632-1.102 8.147-.568 11.228 1.324a.78.78 0 0 1 .257 1.072zm.105-2.835C14.692 8.95 9.375 8.775 6.297 9.71a.935.935 0 1 1-.543-1.79c3.532-1.072 9.404-.866 13.115 1.338a.935.935 0 0 1-.955 1.609z"/></svg></a>
+                        <a href="https://open.spotify.com/track/REPLACE_TRACK_9" target="_blank" class="music-track"><div class="track-number-wrap"><span class="track-number">9</span><span class="track-play-icon">▶</span></div><div class="track-thumbnail">🎵</div><div class="track-info"><div class="track-name">Track Title 9</div><div class="track-artist">Kingdom Bearers Global</div></div><svg class="track-spotify-link" viewBox="0 0 24 24" fill="#1db954" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm4.586 14.424a.622.622 0 0 1-.857.207c-2.348-1.435-5.304-1.76-8.785-.964a.623.623 0 0 1-.277-1.215c3.809-.87 7.076-.496 9.712 1.115a.623.623 0 0 1 .207.857zm1.223-2.722a.779.779 0 0 1-1.072.257c-2.687-1.652-6.785-2.131-9.965-1.166a.779.779 0 0 1-.968-.519.779.779 0 0 1 .52-.968c3.632-1.102 8.147-.568 11.228 1.324a.78.78 0 0 1 .257 1.072zm.105-2.835C14.692 8.95 9.375 8.775 6.297 9.71a.935.935 0 1 1-.543-1.79c3.532-1.072 9.404-.866 13.115 1.338a.935.935 0 0 1-.955 1.609z"/></svg></a>
+                        <a href="https://open.spotify.com/track/REPLACE_TRACK_10" target="_blank" class="music-track"><div class="track-number-wrap"><span class="track-number">10</span><span class="track-play-icon">▶</span></div><div class="track-thumbnail">🎵</div><div class="track-info"><div class="track-name">Track Title 10</div><div class="track-artist">Kingdom Bearers Global</div></div><svg class="track-spotify-link" viewBox="0 0 24 24" fill="#1db954" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm4.586 14.424a.622.622 0 0 1-.857.207c-2.348-1.435-5.304-1.76-8.785-.964a.623.623 0 0 1-.277-1.215c3.809-.87 7.076-.496 9.712 1.115a.623.623 0 0 1 .207.857zm1.223-2.722a.779.779 0 0 1-1.072.257c-2.687-1.652-6.785-2.131-9.965-1.166a.779.779 0 0 1-.968-.519.779.779 0 0 1 .52-.968c3.632-1.102 8.147-.568 11.228 1.324a.78.78 0 0 1 .257 1.072zm.105-2.835C14.692 8.95 9.375 8.775 6.297 9.71a.935.935 0 1 1-.543-1.79c3.532-1.072 9.404-.866 13.115 1.338a.935.935 0 0 1-.955 1.609z"/></svg></a>
                     </div>
-
-                    <div class="scroll-indicator">
-                        <div class="scroll-arrow"></div>
-                    </div>
+                    <div class="scroll-indicator"><div class="scroll-arrow"></div></div>
                 </div>
-
                 <div class="music-card-footer">
                     <a href="https://open.spotify.com/artist/3J3J00YwMv2jnRLlIhCch7?si=_BtaFYGMSOiQI9iSFT50rw" target="_blank" class="btn-more-music">
                         <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm4.586 14.424a.622.622 0 0 1-.857.207c-2.348-1.435-5.304-1.76-8.785-.964a.623.623 0 0 1-.277-1.215c3.809-.87 7.076-.496 9.712 1.115a.623.623 0 0 1 .207.857zm1.223-2.722a.779.779 0 0 1-1.072.257c-2.687-1.652-6.785-2.131-9.965-1.166a.779.779 0 0 1-.968-.519.779.779 0 0 1 .52-.968c3.632-1.102 8.147-.568 11.228 1.324a.78.78 0 0 1 .257 1.072zm.105-2.835C14.692 8.95 9.375 8.775 6.297 9.71a.935.935 0 1 1-.543-1.79c3.532-1.072 9.404-.866 13.115 1.338a.935.935 0 0 1-.955 1.609z"/></svg>
@@ -1518,22 +894,18 @@
                     </a>
                     <p class="all-platforms-text">Available on all music platforms</p>
                     <div class="platform-icons">
-                        <span class="platform-icon-pill">Spotify</span>
-                        <span class="platform-dot"></span>
-                        <span class="platform-icon-pill">Apple Music</span>
-                        <span class="platform-dot"></span>
-                        <span class="platform-icon-pill">YouTube Music</span>
-                        <span class="platform-dot"></span>
-                        <span class="platform-icon-pill">Boomplay</span>
-                        <span class="platform-dot"></span>
+                        <span class="platform-icon-pill">Spotify</span><span class="platform-dot"></span>
+                        <span class="platform-icon-pill">Apple Music</span><span class="platform-dot"></span>
+                        <span class="platform-icon-pill">YouTube Music</span><span class="platform-dot"></span>
+                        <span class="platform-icon-pill">Boomplay</span><span class="platform-dot"></span>
                         <span class="platform-icon-pill">Audiomack</span>
                     </div>
                 </div>
             </div>
-
         </div>
     </section>
 
+    <!-- ===== FOOTER ===== -->
     <footer class="reveal-up">
         <div>
             <h4>Kingdom Bearers Global</h4>
@@ -1541,15 +913,11 @@
         </div>
         <div>
             <h4>Quick Links</h4>
-            <ul class="footer-links">
-                <li>About Us</li><li>Shop Now</li><li>Contact Us</li><li>Give Now</li>
-            </ul>
+            <ul class="footer-links"><li>About Us</li><li>Shop Now</li><li>Contact Us</li><li>Give Now</li></ul>
         </div>
         <div>
             <h4>Stay Updated</h4>
-            <ul class="footer-links">
-                <li>Newsletter Signup</li><li>Latest News</li><li>New Arrivals</li>
-            </ul>
+            <ul class="footer-links"><li>Newsletter Signup</li><li>Latest News</li><li>New Arrivals</li></ul>
         </div>
         <div>
             <h4>Subscribe</h4>
@@ -1561,25 +929,18 @@
     </footer>
 
     <script>
-        let currentSlide = 0;
-        const slides = document.querySelectorAll('.slide');
-        setInterval(() => {
-            slides[currentSlide].classList.remove('active');
-            currentSlide = (currentSlide + 1) % slides.length;
-            slides[currentSlide].classList.add('active');
-        }, 5000);
-
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('active');
+                    entry.target.classList.add('is-visible');
                 }
             });
         }, { threshold: 0.1 });
 
-        document.querySelectorAll('.reveal-left, .reveal-right, .reveal-up').forEach(el => observer.observe(el));
+        document.querySelectorAll('.reveal-left, .reveal-right, .reveal-up, .reveal-fade')
+            .forEach(el => observer.observe(el));
 
-        // Hide scroll indicator when list is scrolled to bottom
         const musicList = document.getElementById('musicList');
         const scrollIndicator = musicList ? musicList.nextElementSibling : null;
         if (musicList && scrollIndicator) {
